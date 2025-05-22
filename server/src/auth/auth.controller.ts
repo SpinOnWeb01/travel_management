@@ -16,6 +16,11 @@ export class AuthController {
     if (!user) {
       throw new UnauthorizedException('Invalid credentials');
     }
-    return this.authService.login(user);
+    const token = this.authService.login(user);
+    return {
+      success:true,
+      message:"login successful",
+      access_token:(await token).access_token
+    }
   }
 }

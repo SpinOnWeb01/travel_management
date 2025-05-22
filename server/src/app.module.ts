@@ -1,24 +1,17 @@
+// src/app.module.ts
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TravelBlogsModule } from './travel-blogs/travel-blogs.module';
-import { UsersModule } from './users/users.module';
+import { ormConfig } from './ormconfig';
 import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
+import { TravelBlogsModule } from './travel-blogs/travel-blogs.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',           // apne db user
-      password: 'root',       // apne db password
-      database: 'travel_management',  // tumhara db name
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true, // dev ke liye true,
-    }),
-    TravelBlogsModule,
-    UsersModule,
-    AuthModule,
+    TypeOrmModule.forRoot(ormConfig),  // Register the TypeORM module with the configuration
+    UsersModule,  // Make sure to import UserModule here
+    AuthModule,  
+    TravelBlogsModule
   ],
 })
 export class AppModule {}
