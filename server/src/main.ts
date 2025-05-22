@@ -3,13 +3,11 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DataSource } from 'typeorm';  // Import DataSource
 import * as dotenv from 'dotenv';
-import { ValidationPipe } from '@nestjs/common';
 
 dotenv.config();  // Load the .env file
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true, forbidUnknownValues: true }));
 
   // Get the instance of DataSource and initialize it
   // const dataSource = app.get(DataSource);  // Retrieve the DataSource instance

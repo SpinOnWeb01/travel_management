@@ -2,7 +2,6 @@ import {   Controller,  Get,  Post,  Put,  Delete,  Param,  Body,  ParseIntPipe,
 import { TravelBlogsService } from './travel-blogs.service';
 import { TravelBlog } from './travel-blogs.entity';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { CreateTravelBlogsDto } from './create-travel-blogs.dto';
 
 @UseGuards(JwtAuthGuard)
 @Controller('travel-blogs')
@@ -20,7 +19,7 @@ export class TravelBlogsController {
   }
 
   @Post()
-  create(@Body() blogData: CreateTravelBlogsDto ): Promise<TravelBlog> {
+  create(@Body() blogData: Partial<TravelBlog>): Promise<TravelBlog> {
     return this.travelBlogsService.create(blogData);
   }
 
