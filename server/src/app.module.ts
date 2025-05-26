@@ -4,7 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ormConfig } from './ormconfig';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
-import { TravelBlogsModule } from './travel-blogs/travel-blogs.module';
+import { TravelBlogsModule } from './travel-blogs/travel_blogs.module';
 
 @Module({
   imports: [

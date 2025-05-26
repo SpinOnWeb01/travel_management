@@ -1,7 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 import { User } from './users/user.entity';
-import { TravelBlog } from './travel-blogs/travel-blogs.entity';
+import { TravelBlog } from './travel-blogs/travel_blogs.entity';
 
 dotenv.config();
 

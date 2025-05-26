@@ -1,8 +1,8 @@
 import {   Controller,  Get,  Post,  Put,  Delete,  Param,  Body,  ParseIntPipe, UseGuards} from '@nestjs/common';
-import { TravelBlogsService } from './travel-blogs.service';
-import { TravelBlog } from './travel-blogs.entity';
+import { TravelBlogsService } from './travel_blogs.service';
+import { TravelBlog } from './travel_blogs.entity';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { CreateTravelBlogsDto } from './create-travel-blogs.dto';
+import { CreateTravelBlogsDto } from './travel_blogs.dto';
 
 @UseGuards(JwtAuthGuard)
 @Controller('travel-blogs')
