@@ -27,5 +27,5 @@ export class CreateTravelBlogsDto {
 
   @IsOptional()
   @IsString()
-  gallery_image?: string;
+  gallery_image?: string[];
 }

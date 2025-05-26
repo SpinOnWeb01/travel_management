@@ -24,7 +24,13 @@ export class TravelBlogsService {
   }
 
    async create(createBlogDto: CreateTravelBlogsDto): Promise<TravelBlog> {
-    const blog = this.travelBlogsRepository.create(createBlogDto);
+    const blogData = {
+      ...createBlogDto,
+      gallery_image: Array.isArray(createBlogDto.gallery_image)
+        ? createBlogDto.gallery_image.join(',')
+        : createBlogDto.gallery_image,
+    };
+    const blog = this.travelBlogsRepository.create(blogData);
     return this.travelBlogsRepository.save(blog);
   }
 
