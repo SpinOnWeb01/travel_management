@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { TravelBlog } from './travel_blogs.entity';
+import { CreateTravelBlogsDto } from './travel_blogs.dto';
 
 @Injectable()
 export class TravelBlogsService {
@@ -22,10 +23,15 @@ export class TravelBlogsService {
     return blog;
   }
 
-  create(blogData: Partial<TravelBlog>): Promise<TravelBlog> {
-    const blog = this.travelBlogsRepository.create(blogData);
+   async create(createBlogDto: CreateTravelBlogsDto): Promise<TravelBlog> {
+    const blog = this.travelBlogsRepository.create(createBlogDto);
     return this.travelBlogsRepository.save(blog);
   }
+
+  // create(blogData: Partial<TravelBlog>): Promise<TravelBlog> {
+  //   const blog = this.travelBlogsRepository.create(blogData);
+  //   return this.travelBlogsRepository.save(blog);
+  // }
 
   async update(id: number, blogData: Partial<TravelBlog>): Promise<TravelBlog> {
     await this.travelBlogsRepository.update(id, blogData);
