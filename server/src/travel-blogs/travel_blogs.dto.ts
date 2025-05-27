@@ -28,4 +28,8 @@ export class CreateTravelBlogsDto {
   @IsOptional()
   @IsString()
   gallery_image?: string[];
+
+  @IsOptional()
+  @IsString()
+  category_name?: string;
 }
