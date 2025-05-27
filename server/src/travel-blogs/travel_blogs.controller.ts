@@ -19,7 +19,7 @@ import { extname } from 'path';
 import { diskStorage } from 'multer';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 
-
+@UseGuards(JwtAuthGuard)
 @Controller('travel-blogs')
 export class TravelBlogsController {
   constructor(private readonly travelBlogsService: TravelBlogsService) {}
