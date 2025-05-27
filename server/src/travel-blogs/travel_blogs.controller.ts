@@ -1,16 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Put,
-  Delete,
-  Param,
-  Body,
-  ParseIntPipe,
-  UseGuards,
-  UploadedFiles,
-  UseInterceptors,
-} from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, ParseIntPipe, UseGuards, UploadedFiles, UseInterceptors } from '@nestjs/common';
 import { TravelBlogsService } from './travel_blogs.service';
 import { TravelBlog } from './travel_blogs.entity';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
