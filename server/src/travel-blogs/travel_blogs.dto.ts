@@ -36,6 +36,4 @@ export class CreateTravelBlogsDto {
   @IsOptional()
   @IsString()
   content_description?: string;
-
-  
 }

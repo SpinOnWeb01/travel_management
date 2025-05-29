@@ -115,7 +115,7 @@ const BlogEdit = () => {
 
       if (response.ok) {
         const data = await response.json();
-        alert(id ? 'Blog updated successfully!' : 'Blog saved successfully!');
+        alert(id ? 'Updated Successfully!' : 'Updated Successfully');
         navigate('/blogs/view');
       } else {
         const errorData = await response.json();
@@ -131,8 +131,6 @@ const BlogEdit = () => {
     <div className="blog-form-container">
       <h2 className="blog-form-header">{id ? 'Edit Blog' : 'Add New Blog'}</h2>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-
-        {/* Meta Title */}
         <div className="mb-4">
           <label className="blog-form-label required-field">Meta Title</label>
           <input
@@ -144,8 +142,6 @@ const BlogEdit = () => {
             placeholder="Enter meta title for SEO"
           />
         </div>
-
-        {/* Meta Description */}
         <div className="mb-4">
           <label className="blog-form-label">Meta Description</label>
           <textarea
@@ -158,7 +154,6 @@ const BlogEdit = () => {
           />
         </div>
 
-        {/* Meta Keywords */}
         <div className="mb-4">
           <label className="blog-form-label">Meta Keywords</label>
           <input
@@ -170,7 +165,6 @@ const BlogEdit = () => {
           />
         </div>
 
-        {/* Main Heading */}
         <div className="mb-4">
           <label className="blog-form-label required-field">Main Heading</label>
           <textarea
@@ -184,7 +178,6 @@ const BlogEdit = () => {
           />
         </div>
 
-        {/* Slug */}
         <div className="mb-4">
           <label className="blog-form-label required-field">Slug</label>
           <input
@@ -197,7 +190,6 @@ const BlogEdit = () => {
           />
         </div>
 
-        {/* Featured Image */}
         <div className="mb-4">
           <label className="blog-form-label">Featured Image</label>
           <div className="file-upload-wrapper">
@@ -243,7 +235,6 @@ const BlogEdit = () => {
           )}
         </div>
 
-        {/* Category Name */}
         <div className="mb-4">
           <label className="blog-form-label">Category Name</label>
           <select
@@ -261,7 +252,6 @@ const BlogEdit = () => {
           </select>
         </div>
 
-        {/* Gallery Images */}
         <div className="mb-4">
           <label className="blog-form-label">Gallery Images</label>
           <div className="file-upload-wrapper">
@@ -306,7 +296,6 @@ const BlogEdit = () => {
           ))}
         </div>
 
-        {/* Content Description */}
         <div className="mb-4">
           <label className="blog-form-label">Content Description</label>
           <textarea
@@ -319,7 +308,6 @@ const BlogEdit = () => {
           />
         </div>
 
-        {/* Submit Button */}
         <button type="submit" className="submit-btn">
           <FontAwesomeIcon icon={faSave} className="me-2" />
           {id ? 'Update Blog' : 'Publish Blog'}

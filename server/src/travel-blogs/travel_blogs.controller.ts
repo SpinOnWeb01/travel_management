@@ -52,10 +52,8 @@ export class TravelBlogsController {
   ) {
     const featuredImage = files.featured_image?.[0];
     const featuredImagePath = featuredImage ? `images/${featuredImage.filename}` : undefined;
-
     const galleryImagePaths =
       files.gallery_image?.map((file) => `images/${file.filename}`) || [];
-
     return this.travelBlogsService.create({
       ...createBlogDto,
       featured_image: featuredImagePath,
@@ -112,7 +110,6 @@ async update(
 
   return this.travelBlogsService.update(id, updateData);
 }
-
 
   @Delete(':id')
   remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
