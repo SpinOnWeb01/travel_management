@@ -1,0 +1,94 @@
+.header {
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: 60px;
+  z-index: 1050;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+
+  .btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #333;
+  }
+
+  .logo {
+    span {
+      font-size: 20px;
+      font-weight: 600;
+      color: #333;
+    }
+  }
+
+  .search-bar {
+    max-width: 350px;
+    width: 100%;
+
+    input.form-control {
+      height: 36px;
+      font-size: 14px;
+      padding: 6px 12px;
+    }
+
+    .btn {
+      height: 36px;
+    }
+  }
+
+  .header-nav {
+    .nav-link {
+      color: #333;
+      font-size: 16px;
+    }
+
+    .dropdown-menu {
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      min-width: 180px;
+      padding: 0;
+    }
+
+    .dropdown-item {
+      font-size: 14px;
+      padding: 10px 16px;
+      color: #333;
+    }
+
+    .dropdown-header {
+      background-color: #f8f9fa;
+      padding: 12px;
+
+      h6 {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      span {
+        font-size: 13px;
+        color: #888;
+      }
+    }
+  }
+}
+
+img.rounded-circle {
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .header {
+    .search-bar {
+      display: none !important;
+    }
+
+    .logo {
+      span {
+        font-size: 18px;
+      }
+    }
+  }
+}

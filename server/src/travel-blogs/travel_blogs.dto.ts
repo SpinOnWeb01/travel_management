@@ -32,4 +32,10 @@ export class CreateTravelBlogsDto {
   @IsOptional()
   @IsString()
   category_name?: string;
+
+  @IsOptional()
+  @IsString()
+  content_description?: string;
+
+  
 }

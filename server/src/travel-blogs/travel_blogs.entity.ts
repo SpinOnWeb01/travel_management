@@ -26,6 +26,11 @@ export class TravelBlog {
   @Column({ type: 'text', nullable: true })
   gallery_image: string;
 
-   @Column({ length: 255, unique: true, nullable: true })
+   @Column({ length: 255, unique: false, nullable: true })
    category_name: string;
+ 
+
+   @Column({ length: 255,  nullable: true })
+   content_description: string;
+ 
 }
