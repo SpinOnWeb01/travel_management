@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import './login.css'; // Assuming you have a CSS file for styles
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
-
+import useAuth from "../auth/useAuth";
+import { useNavigate } from "react-router-dom";
+import Nav from "../routes/route";
 
 
 const bgImage = process.env.PUBLIC_URL + "/images/loginpage.avif";
@@ -10,23 +12,20 @@ const bgImage = process.env.PUBLIC_URL + "/images/loginpage.avif";
 
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const [form, setForm] = useState({ email: "", password: "" });
 
-  const handleSubmit = (e) => {
+   const handleSubmit = async (e) => {
     e.preventDefault();
-    // handle login logic here
-    console.log("Email:", email, "Password:", password);
+    try {
+      await login(form);
+      navigate(Nav.ADMIN_LAYOUT);
+    } catch (err) {
+      alert("Login failed");
+    }
   };
   
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        if (name === "email") {
-        setEmail(value);
-        } else if (name === "password") {
-        setPassword(value);
-        }
-    };
     // const handleCheckboxChange = (e) => {
     //     const { checked } = e.target;
     //     // handle checkbox logic here
@@ -70,8 +69,8 @@ function Login() {
                   id="email"
                   className="form-control border-start-0 ps-3 py-3"
                   placeholder="Enter email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={form.email}
+                  onChange={e => setForm({ ...form, email: e.target.value })}
                   required
                 />
               </div>
@@ -91,8 +90,8 @@ function Login() {
                   className="form-control border-start-0 ps-3 py-3"
                   placeholder="Password"
                   autoComplete="current-password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={form.password}
+                  onChange={e => setForm({ ...form, password: e.target.value })}
                   onInvalid={handleInvalid}
                   onInput={handleInvalid}
                   required

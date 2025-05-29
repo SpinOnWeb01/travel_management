@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './navbar.module.scss';
 import { FaBars, FaSearch, FaUser, FaSignOutAlt } from 'react-icons/fa';
 
-function Navbar({ onToggleSidebar }) {
+function Navbar({ toggleSidebar }) {
   const [search, setSearch] = useState('');
 
   return (
@@ -14,7 +14,7 @@ function Navbar({ onToggleSidebar }) {
           <span className="d-none d-lg-block">Travel Posts</span>
         </Link>
 
-        <button className={`btn btn-sm  ms-3 ${styles.btn}`} onClick={onToggleSidebar}>
+        <button className={`btn btn-sm  ms-3 ${styles.btn}`} onClick={toggleSidebar}>
           <FaBars />
         </button>
       </div>

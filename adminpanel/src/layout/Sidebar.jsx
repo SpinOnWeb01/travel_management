@@ -18,7 +18,7 @@ import './sidebar.css';
 
 import { FaFileAlt, FaPencilAlt } from 'react-icons/fa';
 
-function Sidebar({ isOpen, onToggleSidebar }) {
+function Sidebar({ sidebarOpen, onToggleSidebar }) {
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 991);
   const [mobileOpen, setMobileOpen] = useState(window.innerWidth > 991);
@@ -63,7 +63,7 @@ function Sidebar({ isOpen, onToggleSidebar }) {
 
       <aside 
         id="sidebar" 
-        className={`sidebar bg-dark text-white ${isOpen ? '' : 'collapsed'} ${
+        className={`sidebar bg-dark text-white ${sidebarOpen ? '' : 'collapsed'} ${
           isMobile ? (mobileOpen ? 'mobile-open' : 'mobile-closed') : ''
 
         }`}
@@ -101,14 +101,14 @@ function Sidebar({ isOpen, onToggleSidebar }) {
               </a>
               <ul className="collapse list-unstyled ps-3" id="blog" data-bs-parent="#sidebar-nav">
                 <li onClick={handleLinkClick}>
-                  <Link to="/blogs/new" className="nav-link">
+                  <Link to="/dashboard/blogs/new" className="nav-link">
                     <FontAwesomeIcon icon={faCircle} className="me-2" />
                     <span>Add Blog</span>
                   </Link>
                 </li>
                 
                 <li onClick={handleLinkClick}>
-                  <Link to="/blogs/view/" className="nav-link">
+                  <Link to="/dashboard/blogs/view/" className="nav-link">
                     <FontAwesomeIcon icon={faCircle} className="me-2" />
                     <span>View Blogs</span>
                   </Link>
