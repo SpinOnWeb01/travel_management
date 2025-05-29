@@ -75,7 +75,7 @@ function Sidebar({ sidebarOpen, onToggleSidebar }) {
           <ul className="sidebar-nav list-unstyled" id="sidebar-nav">
             {/* Dashboard */}
             <li className="nav-item" onClick={handleLinkClick}>
-              <Link className="nav-link" to="/">
+              <Link className="nav-link" to="/dashboard">
                 <FontAwesomeIcon icon={faTachometerAlt} className="me-2" />
                 <span>Dashboard</span>
               </Link>

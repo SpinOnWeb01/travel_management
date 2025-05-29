@@ -11,6 +11,7 @@ import { AuthProvider } from './auth/AuthContext';
 import Layout from './layout/Layout';
 import ProtectedRoute from './routes/ProtectedRoute';
 import Nav from './routes/route';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -44,6 +45,7 @@ function App() {
 
           <Route element={<ProtectedRoute />}>
             <Route path={Nav.ADMIN_LAYOUT} element={<Layout sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar}/>}>
+            <Route path={Nav.ADMIN_DASHBOARD} element={<Dashboard />} />
             <Route path={Nav.ADMIN_BLOGS_VIEW} element={<BlogList />} />
             <Route path={Nav.ADMIN_BLOGS_NEW} element={<BlogForm />} />
             <Route path={Nav.ADMIN_BLOGS_EDIT} element={<BlogEdit />} />
