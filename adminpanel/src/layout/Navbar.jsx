@@ -55,8 +55,8 @@ function Navbar({ toggleSidebar }) {
               </li>
               <li><hr className="dropdown-divider" /></li>
             
-              <li>
-                <Link className="dropdown-item" to="/logout">
+              <li onClick={() => sessionStorage.removeItem('token')}>
+                <Link className="dropdown-item" to="/">
                   <FaSignOutAlt className="me-2" />
                   Sign Out
                 </Link>
