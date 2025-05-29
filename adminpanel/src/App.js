@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
-import Navbar from './components/Navbar';
+import { useState, useEffect } from 'react';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import BlogList from './pages/BlogList';
 import BlogForm from './pages/BlogForm';
 import Login from './components/Login';
@@ -9,10 +7,14 @@ import BlogEdit from './pages/Blogedit';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import './App.css';
+import { AuthProvider } from './auth/AuthContext';
+import Layout from './layout/Layout';
+import ProtectedRoute from './routes/ProtectedRoute';
+import Nav from './routes/route';
+import Dashboard from './pages/Dashboard';
 
-function AppLayout() {
+function App() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const location = useLocation();
 
   useEffect(() => {
     const handleResize = () => {
@@ -32,39 +34,27 @@ function AppLayout() {
     setSidebarOpen(!sidebarOpen);
   };
 
-  // Hide sidebar and navbar on login page
-  const isLoginPage = location.pathname === '/';
-
   return (
     <div className={`app-container ${sidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
 
-      {!isLoginPage && <Sidebar isOpen={sidebarOpen} />}
-      
-       {isLoginPage ? (
-        // Login page: no main-content wrapper
+       <AuthProvider>
+      <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login />} />
-        </Routes>
-      ) : (
-        // Other pages: with main-content wrapper
-        <div className="main-content" id="main">
-          <Navbar onToggleSidebar={toggleSidebar} />
-          <Routes>
-            <Route path="/blogs/view" element={<BlogList />} />
-            <Route path="/blogs/new" element={<BlogForm />} />
-            <Route path="/blogs/edit/:id" element={<BlogEdit />} />
-          </Routes>
-        </div>
-      )}
-    </div>
-  );
-}
+          <Route path={Nav.LOGIN} element={<Login />} />
+          {/* <Route path="/signup" element={<Signup />} /> */}
 
-function App() {
-  return (
-    <Router>
-      <AppLayout />
-    </Router>
+          <Route element={<ProtectedRoute />}>
+            <Route path={Nav.ADMIN_LAYOUT} element={<Layout sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar}/>}>
+            <Route path={Nav.ADMIN_DASHBOARD} element={<Dashboard />} />
+            <Route path={Nav.ADMIN_BLOGS_VIEW} element={<BlogList />} />
+            <Route path={Nav.ADMIN_BLOGS_NEW} element={<BlogForm />} />
+            <Route path={Nav.ADMIN_BLOGS_EDIT} element={<BlogEdit />} />
+          </Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+    </div>
   );
 }
 

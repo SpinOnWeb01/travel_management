@@ -1,5 +1,6 @@
-import { Controller, Post, Body, UnauthorizedException } from '@nestjs/common';
+import { Controller, Post, Body, UnauthorizedException, UseGuards, Get, Request } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { JwtAuthGuard } from './jwt-auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -22,5 +23,14 @@ export class AuthController {
       message:"login successful",
       access_token:(await token).access_token
     }
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('me')
+  getProfile(@Request() req) {
+    return {
+      success: true,
+      user: req.user, // from validate() in strategy
+    };
   }
 }
