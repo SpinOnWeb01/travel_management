@@ -3,12 +3,18 @@
   --sidebar-collapsed-width: 60px;
   --sidebar-bg: #fff;
   --sidebar-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  --transition-speed: 0.3s;
+  --transition-speed: margin-left 0.3s ease;
   --nav-link-padding: 10px 15px;
   --sidebar-z-index: 100;
   --navbar-height: 60px;
 }
 
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #e3ebfc;
+  overflow-x: hidden;
+}
 
 
 
@@ -16,27 +22,28 @@
 
 /* Main Content Area */
 .main-content {
-  margin-left: var(--sidebar-width);
-  transition: margin-left var(--transition-speed) ease;
+  position: relative;
+  top: var(--navbar-height);
+  left: 0;
   min-height: 100vh;
-  background-color: var(--bs-light-bg-subtle);
   padding: 20px;
   box-sizing: border-box;
-
-  position: relative;
-  top: 20px;
-  left: 0;
-  width: calc(100% - var(--sidebar-width));
-  transition: margin-left var(--transition-speed) ease;
-  padding-top: var(--navbar-height);
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
   background-color: var(--bs-light-bg-subtle);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
 
+  margin-left: var(--sidebar-width);
+  margin-right: 0; /* Optional if needed */
+  width: calc(100% - var(--sidebar-width));
   
+  transition: all 0.3s ease; /* 🆗 Updated from just margin-left to all */
+
+
   .app-container.sidebar-closed & {
     margin-left: var(--sidebar-collapsed-width);
+    width: calc(100% - var(--sidebar-collapsed-width));
   }
 }
+
 
 /* Mobile Responsiveness */
 @media (max-width: 991px) {

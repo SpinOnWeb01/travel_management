@@ -79,7 +79,7 @@ const BlogForm = () => {
         const data = await response.json();
         console.log('Blog created:', data);
         alert('Blog saved successfully!');
-        navigate('/blogs/view'); // Adjust route as needed
+        navigate('/dashboard/blogs/view'); // Adjust route as needed
       } else {
         const errorData = await response.json();
         console.error('API Error:', errorData);
@@ -289,6 +289,7 @@ const BlogForm = () => {
     </button>
   </form>
 </div>
+
   );
 };
 

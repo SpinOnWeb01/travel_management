@@ -54,7 +54,7 @@ const BlogList = () => {
   return (
     <div>
       <h2>My Travel Post List</h2>
-      <Link to="/blogs/new" className="btn btn-primary mb-3">+ Add Blog</Link>
+      <Link to="/dashboard/blogs/new" className="btn btn-primary mb-3">+ Add Blog</Link>
 
       {loading ? (
         <p>Loading blogs...</p>
@@ -63,11 +63,12 @@ const BlogList = () => {
           <table className="table table-striped">
             <thead className="table-dark">
               <tr>
-                <th>#</th>
+                <th>S.No</th>
                 <th>Title</th>
                 <th>Category</th>
                 <th>Content</th>
                 <th>Actions</th>
+                
               </tr>
             </thead>
             <tbody>
@@ -78,7 +79,7 @@ const BlogList = () => {
                   <td>{blog.meta_keyword}</td>
                   <td>{blog.meta_description}</td>
                   <td>
-                    <Link to={`/blogs/edit/${blog.id}`} className="btn btn-warning btn-sm me-2">
+                    <Link to={`/dashboard/blogs/edit/${blog.id}`} className="btn btn-warning btn-sm me-2">
                       Edit
                     </Link>
                     <button
@@ -94,7 +95,8 @@ const BlogList = () => {
           </table>
 
           {visibleCount < allBlogs.length && (
-            <button className="btn btn-secondary" onClick={handleLoadMore}>
+
+            <button className="d-flex mx-auto btn btn-secondary" onClick={handleLoadMore}>
               Load More
             </button>
           )}

@@ -45,7 +45,7 @@ function Navbar({ toggleSidebar }) {
           <li className="nav-item dropdown">
             <Link className="nav-link dropdown-toggle d-flex align-items-center" to="#" data-bs-toggle="dropdown">
               <img src="/images/profile-img.jpg" alt="Profile" className="rounded-circle" width="32" height="32" />
-              <span className="ms-2 d-none d-md-block">Sonu Kumar</span>
+              <span className="ms-2 d-none d-md-block text-dark">Sonu Kumar</span>
             </Link>
 
             <ul className={` dropdown-menu dropdown-menu-end ${styles.dropdownMenu}`}>

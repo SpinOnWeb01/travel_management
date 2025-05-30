@@ -44,11 +44,13 @@ function App() {
           {/* <Route path="/signup" element={<Signup />} /> */}
 
           <Route element={<ProtectedRoute />}>
+          
             <Route path={Nav.ADMIN_LAYOUT} element={<Layout sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar}/>}>
             <Route path={Nav.ADMIN_DASHBOARD} element={<Dashboard />} />
             <Route path={Nav.ADMIN_BLOGS_VIEW} element={<BlogList />} />
             <Route path={Nav.ADMIN_BLOGS_NEW} element={<BlogForm />} />
             <Route path={Nav.ADMIN_BLOGS_EDIT} element={<BlogEdit />} />
+
           </Route>
           </Route>
         </Routes>
