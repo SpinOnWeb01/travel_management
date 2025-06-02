@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import '../Global.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -114,7 +114,6 @@ const BlogEdit = () => {
       );
 
       if (response.ok) {
-        const data = await response.json();
         alert(id ? 'Updated Successfully!' : 'Updated Successfully');
         navigate('/blogs/view');
       } else {
