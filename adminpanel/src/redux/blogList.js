@@ -1,19 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import api from "../services/api";
 
-// Async thunk for fetching blogs
+// Thunk to fetch blogs
 export const fetchBlogs = createAsyncThunk("blogs/fetchBlogs", async () => {
-  const response = await axios.get("http://localhost:5000/api/v1/travel-blogs");
+  const response = await api.get("/travel-blogs");
   return response.data;
 });
 
-// Async thunk for deleting a blog
+// Thunk to delete a blog
 export const deleteBlog = createAsyncThunk("blogs/deleteBlog", async (id) => {
-  await axios.delete(`http://localhost:5000/api/v1/travel-blogs/${id}`);
+  await api.delete(`/travel-blogs/${id}`);
   return id;
 });
 
-const blogList = createSlice({
+const blogSlice = createSlice({
   name: "blogs",
   initialState: {
     items: [],
@@ -40,4 +40,4 @@ const blogList = createSlice({
   },
 });
 
-export default blogList.reducer;
+export default blogSlice.reducer;
