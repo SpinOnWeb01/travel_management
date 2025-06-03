@@ -1,4 +1,3 @@
-// src/auth/AuthContext.jsx
 import { createContext, useEffect, useState } from "react";
 import api from "../services/api";
 
@@ -18,7 +17,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     api
-      .get("/auth/me",)
+      .get("/auth/me")
       .then((res) => {
         setUser(res.data.user);
       })

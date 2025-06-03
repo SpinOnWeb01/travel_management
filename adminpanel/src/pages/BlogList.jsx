@@ -1,6 +1,6 @@
 import { useEffect, useState, lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteBlog, fetchBlogs } from "../redux/blogList";
+import { deleteBlog, fetchBlogs } from "../redux/blogs";
 import { Link } from "react-router-dom";
 
 const BlogTable = lazy(() => import("./BlogTable"));
@@ -8,6 +8,7 @@ const BlogTable = lazy(() => import("./BlogTable"));
 const BlogList = () => {
   const dispatch = useDispatch();
   const { items: allBlogs, status, error } = useSelector((state) => state.blogs);
+  console.log('useSelector((state) => state', useSelector((state) => state))
   const [visibleCount, setVisibleCount] = useState(10);
   const visibleBlogs = allBlogs.slice(0, visibleCount);
 

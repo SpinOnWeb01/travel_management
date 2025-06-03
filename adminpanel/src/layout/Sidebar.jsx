@@ -1,24 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTachometerAlt,
   faChevronDown,
-  
   faCircle,
-  faTimes,
-  
   faFileAlt
 } from '@fortawesome/free-solid-svg-icons';
-
-
 import './sidebar.css';
 
-
-
-import { FaFileAlt, FaPencilAlt } from 'react-icons/fa';
-
-function Sidebar({ sidebarOpen, onToggleSidebar }) {
+function Sidebar({ sidebarOpen }) {
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 991);
   const [mobileOpen, setMobileOpen] = useState(window.innerWidth > 991);
@@ -34,17 +25,7 @@ function Sidebar({ sidebarOpen, onToggleSidebar }) {
     handleResize();
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
- 
-
-  const toggleMobileSidebar = () => {
-    setMobileOpen(!mobileOpen);
-  };
- 
-  // Handle link clicks to close mobile sidebar
-
   
-
   const handleLinkClick = () => {
     if (isMobile) {
       setMobileOpen(false);

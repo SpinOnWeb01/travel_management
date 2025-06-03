@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './navbar.module.scss';
-import { FaBars, FaSearch, FaUser, FaSignOutAlt } from 'react-icons/fa';
+import { FaBars, FaSearch, FaSignOutAlt } from 'react-icons/fa';
 
 function Navbar({ toggleSidebar }) {
   const [search, setSearch] = useState('');

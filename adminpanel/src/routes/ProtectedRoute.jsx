@@ -1,4 +1,3 @@
-// src/components/ProtectedRoute.jsx
 import { Navigate, Outlet } from "react-router-dom";
 import useAuth from "../auth/useAuth";
 
@@ -7,7 +6,7 @@ const ProtectedRoute = () => {
 
   if (loading) return <p>Loading...</p>;
 
-  return user ? <Outlet /> : <Navigate to="/login" />;
+  return user ? <Outlet /> : <Navigate to="/" />;
 };
 
 export default ProtectedRoute;
