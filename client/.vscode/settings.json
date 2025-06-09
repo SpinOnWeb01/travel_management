@@ -1,0 +1,19 @@
+{
+    "copilot.directoryFilter": [
+        
+        "!typings",
+        "!node_modules",
+        "!.vscode"
+    ],
+    "copilot.schematics": [
+        
+
+        "@schematics/angular",
+        "@ngrx/schematics",
+        "@angular/pwa",
+        "@ng-bootstrap/schematics",
+        "@angular/material",
+        "@clr/angular",
+        "@angular/elements"
+    ]
+}
