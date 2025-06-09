@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './navbar.module.scss';
-import { FaBars, FaSearch, FaUser, FaSignOutAlt } from 'react-icons/fa';
+import { FaBars, FaSearch, FaSignOutAlt } from 'react-icons/fa';
 
 function Navbar({ toggleSidebar }) {
   const [search, setSearch] = useState('');
@@ -45,7 +45,7 @@ function Navbar({ toggleSidebar }) {
           <li className="nav-item dropdown">
             <Link className="nav-link dropdown-toggle d-flex align-items-center" to="#" data-bs-toggle="dropdown">
               <img src="/images/profile-img.jpg" alt="Profile" className="rounded-circle" width="32" height="32" />
-              <span className="ms-2 d-none d-md-block">Sonu Kumar</span>
+              <span className="ms-2 d-none d-md-block text-dark">Sonu Kumar</span>
             </Link>
 
             <ul className={` dropdown-menu dropdown-menu-end ${styles.dropdownMenu}`}>

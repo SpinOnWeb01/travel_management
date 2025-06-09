@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import '../Global.css';
-import { FaSave, FaTimes } from 'react-icons/fa';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSave } from '@fortawesome/free-solid-svg-icons';
 
 const BlogForm = () => {
   const navigate = useNavigate();
@@ -79,7 +77,7 @@ const BlogForm = () => {
         const data = await response.json();
         console.log('Blog created:', data);
         alert('Blog saved successfully!');
-        navigate('/blogs/view'); // Adjust route as needed
+        navigate('/dashboard/blogs/view'); // Adjust route as needed
       } else {
         const errorData = await response.json();
         console.error('API Error:', errorData);
@@ -289,6 +287,7 @@ const BlogForm = () => {
     </button>
   </form>
 </div>
+
   );
 };
 

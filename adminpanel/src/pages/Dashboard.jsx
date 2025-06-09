@@ -1,4 +1,5 @@
 import React from 'react';
+import '../Global.css'; // Import global styles
 
 const Dashboard = () => {
   return (
@@ -6,46 +7,38 @@ const Dashboard = () => {
       <h2 className="mb-4">Dashboard</h2>
 
       {/* Cards Row */}
-      <div className="row mb-4">
-        <div className="col-md-3">
-          <div className="card text-white bg-primary mb-3">
-            <div className="card-body">
-              <h5 className="card-title">Users</h5>
-              <p className="card-text">1,245</p>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="card text-white bg-success mb-3">
-            <div className="card-body">
-              <h5 className="card-title">Sales</h5>
-              <p className="card-text">$25,000</p>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="card text-white bg-warning mb-3">
-            <div className="card-body">
-              <h5 className="card-title">Orders</h5>
-              <p className="card-text">123</p>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className="card text-white bg-danger mb-3">
-            <div className="card-body">
-              <h5 className="card-title">Tickets</h5>
-              <p className="card-text">7 open</p>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      {/* Placeholder for charts or tables */}
-      <div className="card">
-        <div className="card-body">
-          <h5 className="card-title">Analytics</h5>
-          <p className="card-text">Chart or analytics data goes here.</p>
+      <div className="dashboard-cards">
+        <div className=" row">
+          <div className=" col-md-6 col-lg-6 ">
+            <div className="dashboard-card glass-card">
+              <h4>New Posts</h4>
+
+              <p>See the latest travel stories and adventures.</p>
+              <button className="dashboard-btn">View Posts</button>
+            </div>
+          </div>
+          <div className=" col-md-6 col-lg-6 ">
+            <div className="dashboard-card glass-card">
+              <h4>Analytics</h4>
+              <p>Track your blog's performance and audience growth.</p>
+              <button className="dashboard-btn">View Analytics</button>
+            </div>
+          </div>
+          <div className=" col-md-6 col-lg-6 ">
+            <div className="dashboard-card glass-card">
+              <h4>Comments</h4>
+              <p>Manage and reply to recent comments on your posts.</p>
+              <button className="dashboard-btn">Manage Comments</button>
+            </div>
+          </div>
+          <div className=" col-md-6 col-lg-6 ">
+            <div className="dashboard-card glass-card">
+              <h4>Create Post</h4>
+              <p>Share your latest travel experience with your audience.</p>
+              <button className="dashboard-btn">Create New</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

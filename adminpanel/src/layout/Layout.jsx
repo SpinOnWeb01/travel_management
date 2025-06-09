@@ -4,10 +4,13 @@ import { Outlet } from "react-router-dom";
 
 function Layout({sidebarOpen, toggleSidebar}) {
   return (
-    <div>
+    <div >
+        <Sidebar sidebarOpen={sidebarOpen}/>
+        
       <Navbar toggleSidebar={toggleSidebar}/>
-      <Sidebar sidebarOpen={sidebarOpen}/>
+      <div className="main-content" id="main">
       <Outlet />
+      </div>
     </div>
   );
 }

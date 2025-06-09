@@ -1,7 +1,7 @@
 // src/main.ts
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { DataSource } from 'typeorm'; // Import DataSource
+import * as cookieParser from 'cookie-parser';
 import * as dotenv from 'dotenv';
 import { ValidationPipe } from '@nestjs/common';
 import { join } from 'path';
@@ -18,15 +18,16 @@ async function bootstrap() {
       forbidUnknownValues: true, // Reject completely empty objects
     }),
   );
-
+  app.use(cookieParser()); // Use cookie parser middleware
   // Get the instance of DataSource and initialize it
   // const dataSource = app.get(DataSource);  // Retrieve the DataSource instance
   // await dataSource.initialize();  // Initialize the data source
   app.enableCors({
-    origin: process.env.CORS_ORIGIN || '*', // Allow all or specific origins
+    origin: 'http://localhost:3002', // Allow all or specific origins
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
   });
+
   app.useStaticAssets(join(__dirname, '..', 'public'));
   // ✅ Set Global Prefix "/api"
   app.setGlobalPrefix(process.env.API_BASE_URL || 'api');

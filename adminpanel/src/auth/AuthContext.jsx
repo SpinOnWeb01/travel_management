@@ -1,6 +1,5 @@
-// src/auth/AuthContext.jsx
 import { createContext, useEffect, useState } from "react";
-import axios from "../api/axios";
+import api from "../services/api";
 
 export const AuthContext = createContext();
 
@@ -17,18 +16,14 @@ export const AuthProvider = ({ children }) => {
       return;
     }
 
-    axios
-      .get("/auth/me", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    api
+      .get("/auth/me")
       .then((res) => {
         setUser(res.data.user);
       })
       .catch(() => {
         setUser(null);
-        localStorage.removeItem("token"); // Invalid token, remove it
+        sessionStorage.removeItem("token"); // Invalid token, remove it
       })
       .finally(() => {
         setLoading(false);
@@ -36,19 +31,21 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (credentials) => {
-    const res = await axios.post("/auth/login", credentials);
+    const res = await api.post("/auth/login", credentials, {
+      withCredentials: true, // send cookie to client
+    });
     setUser(res.data.success);
     sessionStorage.setItem("token", res.data.access_token);
     setLoading(false);
   };
 
   const signup = async (data) => {
-    const res = await axios.post("/auth/signup", data);
+    const res = await api.post("/auth/signup", data);
     setUser(res.data.user);
   };
 
   const logout = async () => {
-    await axios.post("/auth/logout");
+    await api.post("/auth/logout");
     setUser(null);
   };
 
