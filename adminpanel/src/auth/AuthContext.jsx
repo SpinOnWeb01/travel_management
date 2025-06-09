@@ -31,7 +31,9 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (credentials) => {
-    const res = await api.post("/auth/login", credentials);
+    const res = await api.post("/auth/login", credentials, {
+      withCredentials: true, // send cookie to client
+    });
     setUser(res.data.success);
     sessionStorage.setItem("token", res.data.access_token);
     setLoading(false);
