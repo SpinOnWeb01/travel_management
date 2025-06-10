@@ -23,7 +23,7 @@ async function bootstrap() {
   // const dataSource = app.get(DataSource);  // Retrieve the DataSource instance
   // await dataSource.initialize();  // Initialize the data source
   app.enableCors({
-    origin: 'http://localhost:3002', // Allow all or specific origins
+    origin: ['http://localhost:3000', 'http://localhost:3002'], // Allow all or specific origins
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
   });

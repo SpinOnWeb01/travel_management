@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import {
   faArrowLeftLong,
   faArrowRightLong,
@@ -11,50 +12,25 @@ import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-
 export default function PopularDestinations() {
-  const destinations = [
-    {
-      id: 1,
-      img: "/images/popular-post.png",
-      title: "Coastal Bliss: Sun, Sea and Sand Escapades",
-      location: "Bryce Canyon National Park, USA",
-      price: "$126.65",
-      originalPrice: "$149.00",
-    },
-    {
-      id: 2,
-      img: "/images/destination-post-2.jpg",
-      title: "Coastal Bliss: Sun, Sea and Sand Escapades",
-      location: "Swiss Alps, Switzerland",
-      price: "$126.65",
-      originalPrice: "$149.00",
-    },
-    {
-      id: 3,
-      img: "/images/destination-post-3.jpg",
-      title: "Urban Explorer: City Lights Tour",
-      location: "Tokyo, Japan",
-      price: "$346.65",
-      originalPrice: "$549.00",
-    },
-    {
-      id: 4,
-      img: "/images/destination-post-4.jpg",
-      title: "Desert Oasis: Sand Dune Experience",
-      location: "Dubai, UAE",
-      price: "$26.65",
-      originalPrice: "$49.00",
-    },
-    {
-      id: 5,
-      img: "/images/popular-post.png",
-      title: "Coastal Bliss",
-      location: "Maldives",
-      price: "$86.65",
-      originalPrice: "$129.00",
-    },
-  ];
+  const [destinations, setDestinations] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // 👇 Replace with your real API URL 
+    fetch("http://localhost:5000/api/v1/travel-categories")
+      .then((res) => res.json())
+      .then((data) => {
+        setDestinations(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch destinations", err);
+        setLoading(false);
+      });
+  }, []);
+
+  
 
   return (
     <div className="destiation position-relative py-5">
@@ -66,8 +42,7 @@ export default function PopularDestinations() {
               Popular Destinations Outside India
             </h2>
           </div>
-
-          <div className="col-md-5 text-center text-md-end  ">
+          <div className="col-md-5 text-center text-md-end">
             <div className="d-flex justify-content-center justify-content-md-end gap-2">
               <div className="custom-prev btn btn-light">
                 <FontAwesomeIcon icon={faArrowLeftLong} />
@@ -78,9 +53,6 @@ export default function PopularDestinations() {
             </div>
           </div>
         </div>
-
-        {/* Custom Navigation Buttons (outside of Swiper) */}
-
         {/* Swiper Component */}
         <Swiper
           modules={[Navigation, Autoplay]}
@@ -103,10 +75,10 @@ export default function PopularDestinations() {
         >
           {destinations.map((dest) => (
             <SwiperSlide key={dest.id}>
-              <div className="card destination-card ">
+              <div className="card destination-card">
                 <Image
-                  src={dest.img}
-                  alt={dest.title}
+                  src={`http://127.0.0.1:5000/${dest.image}`}
+                  alt={dest.name}
                   width={500}
                   height={300}
                   className="card-img-top"
@@ -131,15 +103,15 @@ export default function PopularDestinations() {
                       <i className="bi bi-clock"></i> 11 Days
                     </span>
                   </div>
-                  <p className="location mb-1">{dest.location}</p>
-                  <h2 className="title mb-2 fs-5">{dest.title}</h2>
+                  <p className="location mb-1"></p>
+                  <h2 className="title mb-2 fs-5">{dest.name}</h2>
                   <div className="d-flex align-items-center justify-content-between">
                     <div className="price">
                       <span className="main-price me-2">
-                        <span className="tag">From</span> {dest.price}
+                        <span className="tag">From</span> 
                       </span>
                       <span className="cutprice text-decoration-line-through">
-                        {dest.originalPrice}
+                       
                       </span>
                     </div>
                     <div className="circle-icon">
