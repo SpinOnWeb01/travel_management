@@ -3,10 +3,27 @@ import { useNavigate, useParams } from 'react-router-dom';
 import '../Global.css';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useEffect } from 'react';
 
 const BlogForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+
+  const [categories, setCategories] = useState([]);
+
+useEffect(() => {
+  const fetchCategories = async () => {
+    try {
+      const res = await fetch('http://localhost:5000/api/v1/travel-categories');
+      const data = await res.json();
+      setCategories(data);
+    } catch (error) {
+      console.error('Failed to fetch categories:', error);
+    }
+  };
+
+  fetchCategories();
+}, []);
 
   const [form, setForm] = useState({
     meta_title: '',
@@ -37,7 +54,7 @@ const BlogForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic validation
+    // Basic validation 
     if (!form.meta_title.trim() || !form.main_heading.trim() || !form.slug.trim()) {
       alert('Please fill in all required fields: Meta Title, Main Heading, and Slug.');
       return;
@@ -199,21 +216,21 @@ const BlogForm = () => {
     </div>
 
     {/* Category Name */}
-   <div className="mb-4">
+  <div className="mb-4">
   <label className="blog-form-label">Category Name</label>  
   <select
     name="category_name"
     value={form.category_name}
     onChange={handleChange}
     className="blog-form-control"
+    required
   >
     <option value="">Select a category</option>
-    <option value="technology">Technology</option>
-    <option value="health">Health</option>
-    <option value="education">Education</option>
-    <option value="lifestyle">Lifestyle</option>
-    <option value="business">Business</option>
-    {/* Add more options as needed */}
+    {categories.map((cat) => (
+      <option key={cat.id} value={cat.slug}>
+        {cat.name}
+      </option>
+    ))}
   </select>
 </div>
 

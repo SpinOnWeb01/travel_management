@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { TravelCategory } from 'src/travel-category/travel_category.entity';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 
 @Entity('travel_blogs') 
 export class TravelBlog {
@@ -32,5 +33,12 @@ export class TravelBlog {
 
    @Column({ length: 255,  nullable: true })
    content_description: string;
+
+    // ✅ Foreign key column
+  @Column({ nullable: true })
+  category_id: number;
+
+  @ManyToOne(() => TravelCategory, category => category.blogs)
+  category: TravelCategory;
  
 }
