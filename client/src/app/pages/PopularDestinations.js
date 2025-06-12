@@ -11,6 +11,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Link from "next/link";
 
 export default function PopularDestinations() {
   const [destinations, setDestinations] = useState([]);
@@ -104,7 +105,7 @@ export default function PopularDestinations() {
                     </span>
                   </div>
                   <p className="location mb-1"></p>
-                  <h2 className="title mb-2 fs-5">{dest.name}</h2>
+                  <Link href={`/slug/${dest.slug}`}><h2 className="title mb-2 fs-5">{dest.name}</h2></Link>
                   <div className="d-flex align-items-center justify-content-between">
                     <div className="price">
                       <span className="main-price me-2">
