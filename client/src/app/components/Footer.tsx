@@ -9,11 +9,6 @@ import { useEffect, useRef, useState } from 'react';
 import IndianFlag from '../../../public/images/india-flag.png';
 import ftrlogo from '../../../public/images/logo.png';
 
-
-
-
-
-
 export default function Footer() { 
     const [open, setOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);

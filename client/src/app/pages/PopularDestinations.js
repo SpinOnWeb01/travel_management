@@ -27,10 +27,8 @@ export default function PopularDestinations() {
       .catch((err) => {
         console.error("Failed to fetch destinations", err);
         setLoading(false);
-      });
+      });  
   }, []);
-
-  
 
   return (
     <div className="destiation position-relative py-5">
