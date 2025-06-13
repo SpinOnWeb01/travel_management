@@ -1,0 +1,31 @@
+/* src/components/MyClassicEditor.css */
+
+/* Basic styling for the editor container */
+.classic-editor-container {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden; /* To ensure toolbar and content fit */
+}
+
+/* Adjust default CKEditor styling (optional) */
+.ck-editor__editable_inline {
+    min-height: 250px; /* Set a minimum height for the editing area */
+    max-height: 500px; /* Set a maximum height and allow scrolling */
+    overflow-y: auto;
+    padding: 10px;
+}
+
+/* Style for the CKEditor toolbar */
+.ck-toolbar {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #e7e7e7;
+    padding: 8px 10px;
+    border-radius: 3px 3px 0 0;
+}
+
+/* Optional: Improve focus styling */
+.ck-editor__editable.ck-focused {
+    border-color: #80bdff; /* Bootstrap-like focus */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
