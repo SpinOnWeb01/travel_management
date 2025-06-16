@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import './MyClassicEditor.css'; // We'll create this CSS file next
+import styles from './classiceditor.module.scss';
 
 /**
  * A reusable React component that wraps CKEditor 5 (Classic Build).
@@ -42,7 +42,7 @@ function MyClassicEditor({ value, onChange, name = "content_description", placeh
     };
 
     return (
-        <div className="classic-editor-container">
+        <div className={styles.classicEditorContainer}>
             <CKEditor
                 editor={ClassicEditor}
                 data={editorContent} // CKEditor uses its 'data' prop for content

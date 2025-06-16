@@ -4,7 +4,7 @@ import '../Global.css';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect } from 'react';
-import MyClassicEditor from '../components/ClassicEditor'; 
+import MyClassicEditor from '../components/editor/ClassicEditor'; 
 
 const BlogForm = () => {
   const navigate = useNavigate();

@@ -2,14 +2,11 @@ import { useState } from "react";
 import './login.css'; // Assuming you have a CSS file for styles
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
-import useAuth from "../auth/useAuth";
+import useAuth from "../../auth/useAuth";
 import { useNavigate } from "react-router-dom";
-import Nav from "../routes/route";
-
+import Nav from "../../routes/route";
 
 const bgImage = process.env.PUBLIC_URL + "/images/loginpage.avif";
-
-
 
 function Login() {
   const { login } = useAuth();

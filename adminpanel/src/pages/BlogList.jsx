@@ -8,7 +8,6 @@ const BlogTable = lazy(() => import("./BlogTable"));
 const BlogList = () => {
   const dispatch = useDispatch();
   const { items: allBlogs, status, error } = useSelector((state) => state.blogs);
-  console.log('useSelector((state) => state', useSelector((state) => state))
   const [visibleCount, setVisibleCount] = useState(10);
   const visibleBlogs = allBlogs.slice(0, visibleCount);
 
