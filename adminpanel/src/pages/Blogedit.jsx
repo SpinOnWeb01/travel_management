@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import '../Global.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faSave } from '@fortawesome/free-solid-svg-icons';
+import MyClassicEditor from '../components/editor/ClassicEditor'; 
 
 const BlogEdit = () => {
   const navigate = useNavigate();
@@ -22,6 +23,21 @@ const BlogEdit = () => {
 
   const [featuredImageUrl, setFeaturedImageUrl] = useState(null);
   const [galleryImageUrls, setGalleryImageUrls] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch('http://localhost:5000/api/v1/travel-categories');
+        const data = await res.json();
+        setCategories(data);
+      } catch (error) {
+        console.error('Failed to fetch categories:', error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   useEffect(() => {
     const fetchBlogData = async () => {
@@ -115,7 +131,7 @@ const BlogEdit = () => {
 
       if (response.ok) {
         alert(id ? 'Updated Successfully!' : 'Updated Successfully');
-        navigate('/blogs/view');
+        navigate('/dashboard/blogs/view');
       } else {
         const errorData = await response.json();
         alert('Failed to save blog: ' + (errorData.message || 'Unknown error'));
@@ -241,13 +257,14 @@ const BlogEdit = () => {
             value={form.category_name}
             onChange={handleChange}
             className="blog-form-control"
+            required
           >
             <option value="">Select a category</option>
-            <option value="technology">Technology</option>
-            <option value="health">Health</option>
-            <option value="education">Education</option>
-            <option value="lifestyle">Lifestyle</option>
-            <option value="business">Business</option>
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.slug}>
+                {cat.name}
+              </option>
+            ))}
           </select>
         </div>
 
@@ -295,15 +312,13 @@ const BlogEdit = () => {
           ))}
         </div>
 
-        <div className="mb-4">
+         <div className="mb-4">
           <label className="blog-form-label">Content Description</label>
-          <textarea
-            name="content_description"
+          <MyClassicEditor
             value={form.content_description}
             onChange={handleChange}
-            className="blog-form-control blog-form-textarea"
-            placeholder="Enter content description"
-            rows={3}
+            name="content_description"
+            placeholder="Write your detailed blog content here..."
           />
         </div>
 

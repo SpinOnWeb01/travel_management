@@ -20,7 +20,11 @@ const blogSlice = createSlice({
     status: "idle",
     error: null,
   },
-  reducers: {},
+  reducers: {
+    addBlogDirect: (state, action) => {
+      state.items.unshift(action.payload); 
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchBlogs.pending, (state) => {
@@ -40,4 +44,5 @@ const blogSlice = createSlice({
   },
 });
 
+export const { addBlogDirect } = blogSlice.actions;
 export default blogSlice.reducer;

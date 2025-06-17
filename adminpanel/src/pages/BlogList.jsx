@@ -2,11 +2,13 @@ import { useEffect, useState, lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteBlog, fetchBlogs } from "../redux/blogs";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const BlogTable = lazy(() => import("./BlogTable"));
 
 const BlogList = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const { items: allBlogs, status, error } = useSelector((state) => state.blogs);
   const [visibleCount, setVisibleCount] = useState(10);
   const visibleBlogs = allBlogs.slice(0, visibleCount);
@@ -15,7 +17,13 @@ const BlogList = () => {
     if (status === "idle") {
       dispatch(fetchBlogs());
     }
-  }, [status, dispatch]);
+  }, [status, dispatch, location.state]);
+
+  useEffect(() => {
+    if (location.state?.blogAdded) {
+      window.history.replaceState({}, document.title); // clear state
+    }
+  }, [location]);
 
   const handleLoadMore = () => {
     setVisibleCount((prev) => prev + 10);

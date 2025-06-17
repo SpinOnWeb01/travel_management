@@ -5,10 +5,14 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect } from 'react';
 import MyClassicEditor from '../components/editor/ClassicEditor'; 
+import { useDispatch } from "react-redux";
+import { addBlogDirect } from "../redux/blogs"; // adjust path as needed
+
 
 const BlogForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const dispatch = useDispatch();
 
   const [categories, setCategories] = useState([]);
 
@@ -114,7 +118,7 @@ const BlogForm = () => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log('Blog created:', data);
+        dispatch(addBlogDirect(data));
         alert('Blog saved successfully!');
         navigate('/dashboard/blogs/view'); // Adjust route as needed
       } else {
