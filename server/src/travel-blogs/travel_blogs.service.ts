@@ -23,6 +23,14 @@ export class TravelBlogsService {
     return blog;
   }
 
+  async findBySlug(slug: string): Promise<TravelBlog> {
+  const blog = await this.travelBlogsRepository.findOneBy({ slug });
+  if (!blog) {
+    throw new Error(`TravelBlog with slug '${slug}' not found`);
+  }
+  return blog;
+}
+
    async create(createBlogDto: CreateTravelBlogsDto): Promise<TravelBlog> {
     const blogData = {
       ...createBlogDto,

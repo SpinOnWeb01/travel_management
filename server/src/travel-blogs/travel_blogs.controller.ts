@@ -17,10 +17,11 @@ export class TravelBlogsController {
     return this.travelBlogsService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number): Promise<TravelBlog> {
-    return this.travelBlogsService.findOne(id);
-  }
+  @Get('slug/:slug')
+findBySlug(@Param('slug') slug: string): Promise<TravelBlog> {
+  return this.travelBlogsService.findBySlug(slug);
+}
+
 
   @Post('create')
   @UseInterceptors(
