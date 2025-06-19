@@ -43,8 +43,8 @@ export class TravelCategoryController {
     return this.categoryService.getAllCategories();
   }
 
- @Get('slug/:slug')
-getCategoryBySlug(@Param('slug') slug: string) {
-  return this.categoryService.findOneBySlugWithBlogs(slug);
+ @Get('slug/:category_slug')
+getCategoryBySlug(@Param('category_slug') category_slug: string) {
+  return this.categoryService.findOneBySlugWithBlogs(category_slug);
 }
 }

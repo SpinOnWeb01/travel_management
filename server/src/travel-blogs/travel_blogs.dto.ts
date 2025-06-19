@@ -35,5 +35,9 @@ export class CreateTravelBlogsDto {
 
   @IsOptional()
   @IsString()
+  category_slug?: string;
+
+  @IsOptional()
+  @IsString()
   content_description?: string;
 }

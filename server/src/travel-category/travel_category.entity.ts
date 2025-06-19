@@ -12,7 +12,7 @@ export class TravelCategory {
   name: string;
 
   @Column({ name: 'category_slug', nullable: true, unique: true})
-  slug: string;
+  category_slug: string;
 
  @Column({ name: 'category_image', nullable: true })
   image: string;

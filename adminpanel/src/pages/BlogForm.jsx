@@ -1,13 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import '../Global.css';
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect } from 'react';
-import MyClassicEditor from '../components/editor/ClassicEditor'; 
+import MyClassicEditor from '../components/editor/ClassicEditor';
 import { useDispatch } from "react-redux";
-import { addBlogDirect } from "../redux/blogs"; // adjust path as needed
-
+import { addBlogDirect } from "../redux/blogs";
 
 const BlogForm = () => {
   const navigate = useNavigate();
@@ -38,14 +36,30 @@ const BlogForm = () => {
     slug: '',
     featured_image: null,
     category_name: '',
+    category_slug: '',
     gallery_images: [],
     content_description: ''
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm(prev => ({ ...prev, [name]: value }));
-  };
+  const { name, value } = e.target;
+
+  setForm((prev) => {
+    const updatedForm = { ...prev, [name]: value };
+
+    if (name === 'category_name') {
+      const selectedCat = categories.find(cat => cat.name === value);
+      if (selectedCat) {
+        updatedForm.category_slug = selectedCat.category_slug;
+      } else {
+        updatedForm.category_slug = '';
+      }
+    }
+
+    return updatedForm;
+  });
+};
+
 
   const handleFileChange = (e) => {
     const { name, files } = e.target;
@@ -63,16 +77,15 @@ const BlogForm = () => {
       if (file && isValidWebP(file)) {
         setForm(prev => ({ ...prev, featured_image: file }));
       } else {
-        // Clear the input if validation fails
         e.target.value = null;
-        setForm(prev => ({ ...prev, featured_image: null })); // Clear prev selection
+        setForm(prev => ({ ...prev, featured_image: null }));
       }
     } else if (name === 'gallery_images') {
       const validFiles = Array.from(files).filter(isValidWebP);
       if (validFiles.length > 0) {
         setForm(prev => ({ ...prev, gallery_images: [...prev.gallery_images, ...validFiles] }));
-      } else if (files.length > 0) { // If files were selected but none were valid
-        e.target.value = null; // Clear the input
+      } else if (files.length > 0) {
+        e.target.value = null;
       }
     }
   };
@@ -80,7 +93,6 @@ const BlogForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic validation
     if (!form.meta_title.trim() || !form.main_heading.trim() || !form.slug.trim()) {
       alert('Please fill in all required fields: Meta Title, Main Heading, and Slug.');
       return;
@@ -98,17 +110,12 @@ const BlogForm = () => {
     }
 
     formData.append('category_name', form.category_name || 'default-category');
-
+    formData.append('category_slug', form.category_slug);
     formData.append('content_description', form.content_description);
 
     form.gallery_images.forEach((file) => {
-      formData.append('gallery_image', file); // Adjust key if your API expects differently
+      formData.append('gallery_image', file);
     });
-
-    // Log FormData for debugging
-    for (let [key, value] of formData.entries()) {
-      console.log(key, value);
-    }
 
     try {
       const response = await fetch('http://localhost:5000/api/v1/travel-blogs/create', {
@@ -120,7 +127,7 @@ const BlogForm = () => {
         const data = await response.json();
         dispatch(addBlogDirect(data));
         alert('Blog saved successfully!');
-        navigate('/dashboard/blogs/view'); // Adjust route as needed
+        navigate('/dashboard/blogs/view');
       } else {
         const errorData = await response.json();
         console.error('API Error:', errorData);
@@ -136,7 +143,6 @@ const BlogForm = () => {
     <div className="blog-form-container">
       <h2 className="blog-form-header">{id ? 'Edit Blog' : 'Add New Blog'}</h2>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        {/* Meta Title */}
         <div className="mb-4">
           <label className="blog-form-label required-field">Meta Title</label>
           <input
@@ -149,7 +155,6 @@ const BlogForm = () => {
           />
         </div>
 
-        {/* Meta Description */}
         <div className="mb-4">
           <label className="blog-form-label">Meta Description</label>
           <textarea
@@ -162,7 +167,6 @@ const BlogForm = () => {
           />
         </div>
 
-        {/* Meta Keywords */}
         <div className="mb-4">
           <label className="blog-form-label">Meta Keywords</label>
           <input
@@ -174,7 +178,6 @@ const BlogForm = () => {
           />
         </div>
 
-        {/* Main Heading */}
         <div className="mb-4">
           <label className="blog-form-label required-field">Main Heading</label>
           <textarea
@@ -188,20 +191,47 @@ const BlogForm = () => {
           />
         </div>
 
-        {/* Slug */}
         <div className="mb-4">
-          <label className="blog-form-label required-field">Slug</label>
+          <label className="blog-form-label">Category</label>
+         <select
+  name="category_name"
+  value={form.category_name}
+  onChange={handleChange}
+  className="blog-form-control"
+  required
+>
+  <option value="">Select a category</option>
+  {categories.map((cat) => (
+    <option key={cat.id} value={cat.name}>
+      {cat.name}
+    </option>
+  ))}
+</select>
+
+        </div>
+
+        {/* Auto-filled Slug Field (Read-only) */}
+        <div className="mb-4">
+          <label className="blog-form-label">Category Slug (auto-filled)</label>
           <input
-            name="slug"
-            value={form.slug}
-            onChange={handleChange}
+            name="category_slug"
+            value={form.category_slug}
+            readOnly
             className="blog-form-control"
-            required
-            placeholder="URL-friendly slug"
           />
         </div>
 
-        {/* Featured Image */}
+        <div className="mb-4">
+          <label className="blog-form-label">Slug </label>
+          <input
+            type="text"
+            name="slug"
+            onChange={handleChange}
+            value={form.slug}
+            className="blog-form-control"
+          />
+        </div>
+
         <div className="mb-4">
           <label className="blog-form-label">Featured Image</label>
           <div className="file-upload-wrapper">
@@ -217,7 +247,7 @@ const BlogForm = () => {
                 name="featured_image"
                 onChange={handleFileChange}
                 className="file-upload-input"
-                accept="image/webp" 
+                accept="image/webp"
               />
             </label>
           </div>
@@ -233,33 +263,13 @@ const BlogForm = () => {
                   className="remove-image-btn"
                   onClick={() => setForm({ ...form, featured_image: null })}
                 >
-                  <FontAwesomeIcon icon={faTimes} className="" />
+                  <FontAwesomeIcon icon={faTimes} />
                 </button>
               </div>
             </div>
           )}
         </div>
 
-        {/* Category Name */}
-        <div className="mb-4">
-          <label className="blog-form-label">Category Name</label>
-          <select
-            name="category_name"
-            value={form.category_name}
-            onChange={handleChange}
-            className="blog-form-control"
-            required
-          >
-            <option value="">Select a category</option>
-            {categories.map((cat) => (
-              <option key={cat.id} value={cat.slug}>
-                {cat.name}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Gallery Images */}
         <div className="mb-4">
           <label className="blog-form-label">Gallery Images</label>
           <div className="file-upload-wrapper">
@@ -277,7 +287,7 @@ const BlogForm = () => {
                 name="gallery_images"
                 onChange={handleFileChange}
                 className="file-upload-input"
-                accept="image/webp" 
+                accept="image/webp"
                 multiple
               />
             </label>
@@ -299,7 +309,7 @@ const BlogForm = () => {
                       setForm({ ...form, gallery_images: updatedImages });
                     }}
                   >
-                    <FontAwesomeIcon icon={faTimes} className="" />
+                    <FontAwesomeIcon icon={faTimes} />
                   </button>
                 </div>
               ))}

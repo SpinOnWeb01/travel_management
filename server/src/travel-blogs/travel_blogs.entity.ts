@@ -30,8 +30,10 @@ export class TravelBlog {
    @Column({ length: 255, unique: false, nullable: true })
    category_name: string;
  
+   @Column({ length: 255, unique: false, nullable: true })
+   category_slug: string;
 
-   @Column({ length: 255,  nullable: true })
+   @Column({ type: 'text',  nullable: true })
    content_description: string;
 
     // ✅ Foreign key column
