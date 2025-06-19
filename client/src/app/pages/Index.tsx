@@ -1,5 +1,6 @@
 'use client';
 
+import HeroSec from "./HeroSec";
 import Offer from "./Offer";
 import OfferPost from "./OfferPost";
 import PopularDestinations from "./PopularDestinations";
@@ -15,6 +16,7 @@ export default function Index () {
 
         <>         
 
+        
         <TopDestination />
         <Offer />
 

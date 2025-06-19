@@ -9,8 +9,7 @@ import {
   faArrowRightLong,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Image from "next/image";
-import "swiper/css";
+import Image from 'next/image';
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -38,7 +37,7 @@ export default function TopDestination() {
         <div className="container">
           <div className="row align-items-end">
             <div className="col-md-6 text-center text-md-start">
-              <span className="section-subtitle">Best Places near at you</span>
+              <span className="section-subtitle">Best Places For You</span>
               <h2 className="section-title">Explore Top Destinations</h2>
             </div>
 
@@ -54,7 +53,7 @@ export default function TopDestination() {
             </div>
           </div>
 
-          <div className="row">
+          <div className="col-lg-12">
             <Swiper
               modules={[Navigation, Autoplay]}
               navigation={{
@@ -67,7 +66,7 @@ export default function TopDestination() {
                 disableOnInteraction: false,
               }}
               loop={true}
-              spaceBetween={20}
+              spaceBetween={30}
               breakpoints={{
                 0: { slidesPerView: 1 },
                 576: { slidesPerView: 2 },
@@ -84,7 +83,7 @@ export default function TopDestination() {
                           src={dest.image}
                           alt={dest.title}
                           width={500}
-                          height={300}
+                          height={326}
                           className="img-fluid rounded"
                         />
                       </div>
@@ -123,6 +122,8 @@ export default function TopDestination() {
           </div>
         </div>
       </div>
+
+      
     </>
   );
 }

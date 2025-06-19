@@ -5,9 +5,15 @@
 import { faFacebookF, faLinkedinIn, faPinterest, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from 'react';
 import IndianFlag from '../../../public/images/india-flag.png';
 import ftrlogo from '../../../public/images/logo.png';
+
+
+
+
+
 
 export default function Footer() { 
     const [open, setOpen] = useState(false);
@@ -38,11 +44,17 @@ export default function Footer() {
           <div className="container">
             <div className="row gy-4">
               <div className="col-lg-3 col-md-3">
-                <div className="d-flex align-items-center mb-3">
-                  <Image src={ftrlogo} alt="Logo" className="img-fluid " />
+                <div className="d-flex align-items-center ">
+                  <Link href="/" className="ftrlogo">
+                    <Image
+                      src={ftrlogo}
+                      alt="Logo"
+                      className="img-fluid logo"
+                    />
+                  </Link>
                 </div>
 
-                <div className="dropdown " ref={dropdownRef}>
+                <div className="dropdown me-2" ref={dropdownRef}>
                   <button
                     className="btn  country-ftr d-flex  dropdown-toggle"
                     type="button"
@@ -95,10 +107,10 @@ export default function Footer() {
               <div className="col-lg-9 col-md-9">
                 <div className=" d-flex gap-3 justify-content-center justify-content-md-end">
                   <div className="ftr-social">
-                    <FontAwesomeIcon icon={faFacebookF} className="me-1 " />
-                    <FontAwesomeIcon icon={faTwitter} className="me-1 " />
-                    <FontAwesomeIcon icon={faPinterest} className="me-1 " />
-                    <FontAwesomeIcon icon={faLinkedinIn} className="me-1 " />
+                    <FontAwesomeIcon icon={faFacebookF} className=" " />
+                    <FontAwesomeIcon icon={faTwitter} className=" " />
+                    <FontAwesomeIcon icon={faPinterest} className=" " />
+                    <FontAwesomeIcon icon={faLinkedinIn} className=" " />
                   </div>
                 </div>
               </div>
@@ -161,11 +173,11 @@ export default function Footer() {
                   <input
                     type="email"
                     placeholder="Email Address"
-                    className="form-control mb-2 mb-sm-0 me-sm-2 email-input"
+                    className="form-control  email-input"
                   />
                   <button className="btn subscribe-btn">Subscribe</button>
                 </div>
-                <p className="copyright mt-3">
+                <p className="copyright mt-3 ps-1">
                   travel, Kesselstraße 5 – 7, 40221 Düsseldorf, Germany <br />
                   Copyright 2025 travel | All rights reserved.
                 </p>

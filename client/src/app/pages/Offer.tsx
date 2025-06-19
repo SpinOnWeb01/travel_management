@@ -14,29 +14,30 @@ export default function Offer () {
 
     return (
       <>
-        <div className="offer mb-5">
+        <div className="offer">
           <div className="container">
             <div className="row">
               <div className="col-md-12">
                 <div className="offerbox">
-                  <div className="offeritem">
+                  <div className="offeritem col-md-3">
                     <Image
                       src={offer1}
                       alt="offer"
-                      width={350}
-                      height={350}
+                      width={232}
+                      height={182}
                       className="img-fluid rounded"
                     />
                   </div>
 
-                  <div className="offertext">
+                  <div className="offertext col-md-6">
                     <div className="content">
                       <div className="btn-offer">
                         <Link href="#">Special Offer</Link>
                       </div>
 
-                      <h2 className="text-white ">
-                        Grab Up To 40% Off On Your Favorite Destination
+                      <h2 className="text-white text-center">
+                        Grab Up To 40% Off <br />
+                        On Your Favorite Destination
                       </h2>
 
                       <div className="call-to-action text-center">
@@ -51,12 +52,12 @@ export default function Offer () {
                     </div>
                   </div>
 
-                  <div className="offeritem">
+                  <div className="offeritem col-md-3">
                     <Image
                       src={offer2}
                       alt="offer"
-                      width={350}
-                      height={350}
+                      width={230}
+                      height={227}
                       className="img-fluid rounded"
                     />
                   </div>

@@ -1,5 +1,7 @@
 "use client";
 
+
+
 import {
   faArrowLeftLong,
   faArrowRightLong,
@@ -12,15 +14,14 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import type { Swiper as SwiperClass } from "swiper";
+import type { Swiper as SwiperType } from "swiper";
+import { setTimeout } from "timers";
 
 const OfferPost = () => {
   const [activeTab, setActiveTab] = useState("all");
-  const [swiperInstance, setSwiperInstance] = useState<SwiperClass | null>(null);
+  const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
   const prevRef = useRef(null);
   const nextRef = useRef(null);
-  const [navigationReady, setNavigationReady] = useState(false);
-
 
   const tabs = [
     { key: "all", label: "All Offers" },
@@ -38,7 +39,7 @@ const OfferPost = () => {
         image: "/images/post.png",
         category: "INTL Flight",
         terms: "T&C's Apply",
-        title: "THE HILLS ARE CALLING YOU:",
+        title: "Live Now: PAYDAY SALE by Akasa Air!",
         description: "with flight fares starting @1500*.",
         link: "#",
         type: "flight",
@@ -48,7 +49,7 @@ const OfferPost = () => {
         image: "/images/post.png",
         category: "INTL Flight",
         terms: "T&C's Apply",
-        title: "EUROPEAN ESCAPE:",
+        title: "THE HILLS ARE CALLING YOU:",
         description: "Flights to Paris from @₹35,999*.",
         link: "#",
         type: "flight",
@@ -58,7 +59,7 @@ const OfferPost = () => {
         image: "/images/post.png",
         category: "Hotel Deal",
         terms: "Limited rooms",
-        title: "LUXURY STAYS:",
+        title: "Hotels in Spotlight:",
         description: "5-star hotels at 40% off.",
         link: "#",
         type: "hotel",
@@ -499,22 +500,26 @@ const OfferPost = () => {
 
   const groupedOffers = useMemo(() => {
     const result = [];
-    for (let i = 0; i < filteredOffers.length; i += 6) {
-      result.push(filteredOffers.slice(i, i + 6));
+    // Group by 4 items per slide instead of 6/8
+    for (let i = 0; i < filteredOffers.length; i += 2) {
+      result.push(filteredOffers.slice(i, i + 2));
     }
     return result;
   }, [filteredOffers]);
 
-  useEffect(() => {
-    if (swiperInstance) {
-      swiperInstance.update();
-      setTimeout(() => {
-        swiperInstance.navigation.init();
+ useEffect(() => {
+  if (swiperInstance) {
+    swiperInstance.update?.();
+
+    setTimeout(() => {
+      if (swiperInstance.navigation && typeof swiperInstance.navigation.update === "function") {
         swiperInstance.navigation.update();
-        swiperInstance.slideTo(0);
-      }, 100);
-    }
-  }, [activeTab, swiperInstance]);
+      }
+      swiperInstance.slideTo?.(0);
+    }, 300);
+  }
+}, [activeTab, swiperInstance]);
+
 
   return (
     <div className="exclusive-post position-relative">
@@ -527,7 +532,7 @@ const OfferPost = () => {
           </div>
           <div className="col-md-8">
             <ul
-              className="nav offer-tab nav-tabs justify-content-center gap-2"
+              className="nav offer-tab nav-tabs justify-content-end gap-2"
               role="tablist"
             >
               {tabs.map((tab) => (
@@ -550,35 +555,41 @@ const OfferPost = () => {
           </div>
         </div>
 
-        <div className="row pt-5 position-relative">
+        <div className="row position-relative exclusive-post-item">
           <Swiper
             key={activeTab}
-            modules={[Navigation,]}
+            modules={[Navigation]}
             navigation={{
               prevEl: prevRef.current,
               nextEl: nextRef.current,
             }}
-            // autoplay={{ delay: 4000, disableOnInteraction: false }}
-            loop={groupedOffers.length > 1}
-            spaceBetween={20}
+           
+            loop={true}
+            slidesPerView={3} // or as needed
+            spaceBetween={30}
+            // centeredSlides={true}
+            
             onSwiper={(swiper) => {
               setSwiperInstance(swiper);
-              setTimeout(() => {
-                
-                swiper.navigation.init();
-                swiper.navigation.update();
-              }, 100);
-            }}
-            onInit={(swiper) => {
               swiper.navigation.init();
               swiper.navigation.update();
+            }}
+            // onInit={(swiper) => {
+            //   swiper.navigation.init();
+            //   swiper.navigation.update();
+            // }}
+            breakpoints={{
+              320: { slidesPerView: 1 },
+              576: { slidesPerView: 2 },
+              768: { slidesPerView: 3 },
+              992: { slidesPerView: 3 },
             }}
           >
             {groupedOffers.map((group, index) => (
               <SwiperSlide key={index}>
-                <div className="row g-4 ">
+                <div className="row exclusivepost-row">
                   {group.map((offer) => (
-                    <div className="col-md-4" key={offer.id}>
+                    <div className="" key={offer.id}>
                       <div className="postitem">
                         <Image
                           src={offer.image}

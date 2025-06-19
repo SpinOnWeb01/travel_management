@@ -1,11 +1,9 @@
 'use client'
-import { faFacebookF, faInstagram, faPinterest, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import IndianFlag from '../../../public/images/india-flag.png';
-import '../style.css';
+
 
 export default function Header() {
   const [currency, setCurrency] = useState('INDIA');
@@ -40,16 +38,21 @@ export default function Header() {
           <div className="row align-items-center border-bottom border-secondary py-3">
             {/* Social & Contact Info */}
             <div className="col-12 col-md-6 mb-3 mb-md-0">
-              <div className="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-start gap-2">
+              <div className="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-start gap-1">
                 {/* Social Icons */}
-                <ul className="list-unstyled d-flex mb-0 top-social gap-3">
+                <ul className="list-unstyled d-flex mb-0 top-social ">
                   <li>
                     <Link
                       href="https://facebook.com"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <FontAwesomeIcon icon={faFacebookF} />
+                      <Image
+                        src="/images/icon/top-header.png"
+                        width={16}
+                        height={16}
+                        alt="facebook"
+                      />
                     </Link>
                   </li>
                   <li>
@@ -58,7 +61,12 @@ export default function Header() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <FontAwesomeIcon icon={faTwitter} />
+                      <Image
+                        src="/images/icon/top-header2.png"
+                        width={16}
+                        height={16}
+                        alt="twitter"
+                      />
                     </Link>
                   </li>
                   <li>
@@ -67,23 +75,33 @@ export default function Header() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <FontAwesomeIcon icon={faInstagram} />
+                      <Image
+                        src="/images/icon/top-header3.png"
+                        width={16}
+                        height={16}
+                        alt="instagram"
+                      />
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href="https://pinterest.com"
+                      href="https://linkedin.com"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <FontAwesomeIcon icon={faPinterest} />
+                      <Image
+                        src="/images/icon/linkedin.png"
+                        width={16}
+                        height={16}
+                        alt="linkedin"
+                      />
                     </Link>
                   </li>
                 </ul>
 
                 {/* Contact Info */}
                 <div className="top-contact-info">
-                  <ul className="pl-0 d-flex flex-row flex-wrap align-items-center gap-2 mb-0">
+                  <ul className="pl-0 d-flex flex-row flex-wrap align-items-center gap-0 mb-0">
                     <li>
                       <Link href="#">+91 99999 99999</Link>
                     </li>
@@ -97,7 +115,7 @@ export default function Header() {
 
             {/* Language & Currency */}
             <div className="col-12 col-md-6">
-              <div className="d-flex flex-md-row justify-content-center justify-content-md-end align-items-center gap-2">
+              <div className="d-flex flex-md-row justify-content-center justify-content-md-end align-items-center gap-3">
                 {/* Language Dropdown */}
                 <div className="position-relative">
                   <button
@@ -163,16 +181,13 @@ export default function Header() {
       <nav className="navbar navbar-expand-lg py-3 main_header">
         <div className="container d-flex justify-content-between align-items-center">
           {/* Logo */}
-          
-            <Link  href="#" className="navbar-brand d-flex align-items-center gap-2 mb-0">
-              <Image
-                src="/images/logo.png"
-                alt="Logo"
-                width={180}
-                height={60}
-              />
-            </Link>
-          
+
+          <Link
+            href="/"
+            className="navbar-brand d-flex align-items-center gap-2 mb-0"
+          >
+            <Image src="/images/logo.png" alt="Logo" width={180} height={60} />
+          </Link>
 
           {/* User Button */}
           <div className="d-flex align-items-center">
@@ -181,7 +196,12 @@ export default function Header() {
               className="user-btn position-relative d-flex align-items-center gap-2 px-4 py-2"
             >
               <span className="user-icon d-flex align-items-center justify-content-center">
-                <i className="bi bi-person-fill"></i>
+                <Image
+                  src="/images/loginuser.png"
+                  width={18}
+                  height={18}
+                  alt="user"
+                />
               </span>
               <span>Login & Sign Up</span>
               <span className="dropdown-arrow ms-2"></span>
@@ -191,6 +211,14 @@ export default function Header() {
       </nav>
 
       {/* end header  */}
+
+
+
+
+                  
+
+
+
     </>
   );
 }
