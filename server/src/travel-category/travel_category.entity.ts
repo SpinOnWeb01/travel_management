@@ -1,5 +1,3 @@
-// src/travel-category/travel_category.entity.ts
-
 import { TravelBlog } from 'src/travel-blogs/travel_blogs.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
@@ -16,7 +14,6 @@ export class TravelCategory {
 
  @Column({ name: 'category_image', nullable: true })
   image: string;
-
 
   @OneToMany(() => TravelBlog, blog => blog.category)
   blogs: TravelBlog[];

@@ -1,5 +1,3 @@
-// src/travel-category/travel_category.controller.ts
-
 import { Controller, Post, Body, Get, Param, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { TravelCategoryService } from './travel_category.service';
 import { CreateTravelCategoryDto } from './dto/create-travel-category.dto';
@@ -7,14 +5,10 @@ import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { FileInterceptor } from '@nestjs/platform-express';
 
-
 @Controller('travel-categories')
 export class TravelCategoryController {
   [x: string]: any;
   constructor(private readonly categoryService: TravelCategoryService) {}
-
-  
-
 
   @Post()
   @UseInterceptors(

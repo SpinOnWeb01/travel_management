@@ -62,7 +62,7 @@ findBySlug(@Param('slug') slug: string): Promise<TravelBlog> {
     });
   }
 
-  @Put(':id')
+@Put('slug/:slug')
 @UseInterceptors(
   FileFieldsInterceptor(
     [
@@ -83,7 +83,7 @@ findBySlug(@Param('slug') slug: string): Promise<TravelBlog> {
   )
 )
 async update(
-  @Param('id', ParseIntPipe) id: number,
+  @Param('slug') slug: string,
   @UploadedFiles()
   files: {
     featured_image?: Express.Multer.File[];
@@ -109,7 +109,7 @@ async update(
     updateData.gallery_image = galleryImagePaths.join(',');
   }
 
-  return this.travelBlogsService.update(id, updateData);
+  return this.travelBlogsService.update(slug, updateData);
 }
 
   @Delete(':id')

@@ -10,7 +10,7 @@ type TourData = {
   featured_image: string;
   gallery_image: string;
   meta_description: string;
-  content: string;
+  content_description: string;
   // Add other properties as needed from your API response
 };
 
@@ -129,8 +129,8 @@ export default function TourPostInfo({ tour }: { tour: TourData }) {
             <div className="col-md-12">
               <div className="tour-content">
                 <h1>About This Tour</h1>
-                <p>{tour.meta_description}</p>
-                <div dangerouslySetInnerHTML={{ __html: tour.content }} />
+
+                <div dangerouslySetInnerHTML={{ __html: tour.content_description }} />
               </div>
             </div>
           </div>

@@ -1,5 +1,3 @@
-// src/travel-category/dto/create-travel-category.dto.ts
-
 import { IsString, MinLength } from 'class-validator';
 
 export class CreateTravelCategoryDto {
@@ -10,5 +8,6 @@ export class CreateTravelCategoryDto {
   @IsString()
   @MinLength(2)
   slug: string;
+  slugss: any;
 
 }

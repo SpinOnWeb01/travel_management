@@ -15,10 +15,10 @@ export class TravelBlogsService {
     return this.travelBlogsRepository.find();
   }
 
-  async findOne(id: number): Promise<TravelBlog> {
-    const blog = await this.travelBlogsRepository.findOneBy({ id });
+  async findOne(slug: string): Promise<TravelBlog> {
+    const blog = await this.travelBlogsRepository.findOneBy({ slug });
     if (!blog) {
-      throw new Error(`TravelBlog with id ${id} not found`);
+      throw new Error(`TravelBlog with id ${slug} not found`);
     }
     return blog;
   }
@@ -42,14 +42,9 @@ export class TravelBlogsService {
     return this.travelBlogsRepository.save(blog);
   }
 
-  // create(blogData: Partial<TravelBlog>): Promise<TravelBlog> {
-  //   const blog = this.travelBlogsRepository.create(blogData);
-  //   return this.travelBlogsRepository.save(blog);
-  // }
-
-  async update(id: number, blogData: Partial<TravelBlog>): Promise<TravelBlog> {
-    await this.travelBlogsRepository.update(id, blogData);
-    return this.findOne(id);
+  async update(slug: string, blogData: Partial<TravelBlog>): Promise<TravelBlog> {
+    await this.travelBlogsRepository.update({slug}, blogData);
+    return this.findOne(slug);
   }
 
   async remove(id: number): Promise<void> {

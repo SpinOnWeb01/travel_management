@@ -24,7 +24,6 @@ export class TravelCategoryService {
       name: data.name,
       category_slug: data.slug,
       image: imagePath,
-      
     });
     return await this.categoryRepo.save(category);
   } catch (error) {
@@ -37,16 +36,15 @@ export class TravelCategoryService {
 }
 
   async findOneBySlugWithBlogs(category_slug: string) {
-    // Find the category by slug
+    
     const category = await this.categoryRepo.findOne({ where: { category_slug } });
 
     if (!category) {
       throw new NotFoundException('Category not found');
     }
 
-    // Find blogs where category_name matches category.name
     const blogs = await this.blogRepo.find({
-      where: { category_name: category.category_slug },
+      where: { category_slug: category.category_slug },
       select: ['id', 'main_heading', 'meta_description','meta_keyword','main_heading','slug','featured_image','gallery_image','category_name'],
     });
 
@@ -57,8 +55,6 @@ export class TravelCategoryService {
       blogs,
     };
   }
-
-
 
   async getAllCategories() {
     return this.categoryRepo.find();

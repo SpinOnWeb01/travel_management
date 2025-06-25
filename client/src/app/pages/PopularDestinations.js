@@ -11,14 +11,11 @@ import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Link from "next/link";
-
-
 export default function PopularDestinations() {
  const [destinations, setDestinations] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // 👇 Replace with your real API URL 
     fetch("http://localhost:5000/api/v1/travel-categories")
       .then((res) => res.json())
       .then((data) => {
@@ -30,7 +27,6 @@ export default function PopularDestinations() {
         setLoading(false);
       });  
   }, []);
-
   return (
     <div className="destiation position-relative ">
       <div className="container">
@@ -41,7 +37,6 @@ export default function PopularDestinations() {
               Popular Destinations Outside India
             </h2>
           </div>
-
           <div className="col-md-5 text-center text-md-end  mb-4 pb-1">
             <div className="d-flex justify-content-center justify-content-md-end gap-2">
               <div className="custom-prev btn btn-light">
@@ -53,10 +48,6 @@ export default function PopularDestinations() {
             </div>
           </div>
         </div>
-
-        {/* Custom Navigation Buttons (outside of Swiper) */}
-
-        {/* Swiper Component */}
        {!loading && destinations.length > 0 && (
   <Swiper
     modules={[Navigation, Autoplay]}
@@ -106,10 +97,9 @@ export default function PopularDestinations() {
             </Link>
             <div className="d-flex align-items-center justify-content-between">
               <div className="price">
-                
               </div>
               <div className="circle-icon">
-                <i className="bi bi-arrow-up-right"></i>
+               <Link href={`/category/${dest.category_slug}`}> <i className="bi bi-arrow-up-right"></i></Link>
               </div>
             </div>
           </div>

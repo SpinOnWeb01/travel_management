@@ -2,13 +2,11 @@ import { useState, useEffect, Suspense, lazy } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import "./App.css";
-
 import { AuthProvider } from "./auth/AuthContext";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Nav from "./routes/route";
 import { Spinner } from "@radix-ui/themes";
 
-// Lazy-loaded components
 const Login = lazy(() => import("./components/login/Login"));
 const Layout = lazy(() => import("./layout/Layout"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));

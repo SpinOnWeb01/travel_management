@@ -1,11 +1,8 @@
 
 "use client";
 
-import Breadcrumb from "./Breadcrumb";
+import Breadcrumb from "../../components/Breadcrumb";
 import TourPostInfo from "./TourPostInfo";
-
-
-
 
 export default function TourDetail () { 
     return (

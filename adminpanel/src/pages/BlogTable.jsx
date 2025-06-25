@@ -22,7 +22,7 @@ const BlogTable = ({ blogs, onDelete }) => {
             <td>{blog.meta_description}</td>
             <td>
               <Link
-                to={`/dashboard/blogs/edit/${blog.id}`}
+                to={`/dashboard/blogs/edit/${blog.slug}`}
                 className="btn btn-warning btn-sm me-2"
               >
                 Edit

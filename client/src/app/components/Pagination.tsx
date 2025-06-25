@@ -17,7 +17,7 @@ export default function Pagination() {
           <button className="pagination-btn">Next Page</button>
         </div>
       </div>
-      ;
+      
     </>
   );
 }

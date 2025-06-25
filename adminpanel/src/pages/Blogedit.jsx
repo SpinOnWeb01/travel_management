@@ -7,7 +7,7 @@ import MyClassicEditor from '../components/editor/ClassicEditor';
 
 const BlogEdit = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { slug } = useParams();
 
   const [form, setForm] = useState({
     meta_title: '',
@@ -41,10 +41,11 @@ const BlogEdit = () => {
 
   useEffect(() => {
     const fetchBlogData = async () => {
-      if (!id) return;
+      console.log('Fetching blog data for slug:', slug);
+      if (!slug) return;
 
       try {
-        const response = await fetch(`http://localhost:5000/api/v1/travel-blogs/${id}`);
+        const response = await fetch(`http://localhost:5000/api/v1/travel-blogs/slug/${slug}`);
         if (!response.ok) {
           throw new Error('Failed to fetch blog data');
         }
@@ -76,7 +77,7 @@ const BlogEdit = () => {
     };
 
     fetchBlogData();
-  }, [id]);
+  }, [slug]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -120,8 +121,8 @@ const BlogEdit = () => {
 
     try {
       const response = await fetch(
-        id
-          ? `http://localhost:5000/api/v1/travel-blogs/${id}`
+        slug
+          ? `http://localhost:5000/api/v1/travel-blogs/slug/${slug}`
           : 'http://localhost:5000/api/v1/travel-blogs/create',
         {
           method: 'PUT',
@@ -130,7 +131,7 @@ const BlogEdit = () => {
       );
 
       if (response.ok) {
-        alert(id ? 'Updated Successfully!' : 'Updated Successfully');
+        alert(slug ? 'Updated Successfully!' : 'Updated Successfully');
         navigate('/dashboard/blogs/view');
       } else {
         const errorData = await response.json();
@@ -144,7 +145,7 @@ const BlogEdit = () => {
 
   return (
     <div className="blog-form-container">
-      <h2 className="blog-form-header">{id ? 'Edit Blog' : 'Add New Blog'}</h2>
+      <h2 className="blog-form-header">{slug ? 'Edit Blog' : 'Add New Blog'}</h2>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="mb-4">
           <label className="blog-form-label required-field">Meta Title</label>
@@ -324,7 +325,7 @@ const BlogEdit = () => {
 
         <button type="submit" className="submit-btn">
           <FontAwesomeIcon icon={faSave} className="me-2" />
-          {id ? 'Update Blog' : 'Publish Blog'}
+          {slug ? 'Update Blog' : 'Publish Blog'}
         </button>
       </form>
     </div>
