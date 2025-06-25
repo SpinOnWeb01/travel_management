@@ -4,6 +4,7 @@ import { AuthController } from './auth.controller';
 import { UsersModule } from '../users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
+import { BeckendModule } from './beckend-/beckend-.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { JwtStrategy } from './jwt.strategy';
       secret: process.env.JWT_SECRET_KEY, 
       signOptions: { expiresIn: '1d' },
     }),
+    BeckendModule,
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],
