@@ -4,6 +4,7 @@
 
 import Header from "@/app/components/Header";
 import Login from "./Login";
+import Footer from "../components/Footer";
 
 
 
@@ -16,6 +17,7 @@ export default function Page() {
                <Header />
              </div>
        <Login />
+       <Footer />
       </>
     );
 }
