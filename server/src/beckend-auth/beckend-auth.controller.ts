@@ -1,13 +1,20 @@
-import { Controller, Post, Body, Get, Param } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Inject } from '@nestjs/common';
 import { BeckendAuthService } from './beckend-auth.service';
+import { MailerService } from 'src/mailer/mailer.service';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { Cache } from 'cache-manager';
 
 @Controller('beckend-auth')
 export class BeckendAuthController {
-  constructor(private readonly authService: BeckendAuthService) {}
+  constructor(
+    private readonly authService: BeckendAuthService,
+    private readonly mailerService: MailerService,
+    @Inject(CACHE_MANAGER) private readonly cacheManager: Cache // Injected cache manager
+  ) {}
 
   @Post('signup')
-  async signup(@Body() body: { phone: string; password: string }) {
-    return this.authService.signupMobile(body.phone, body.password);
+  async signup(@Body() body: { phone: string; email: string; password: string }) {
+    return this.authService.signupMobile(body.phone, body.email, body.password);
   }
 
   @Post('verify-otp')
@@ -15,15 +22,50 @@ export class BeckendAuthController {
     return this.authService.verifyOtp(body.userId, body.otp);
   }
 
-  // In controller
-@Get('get-otp/:userId')
-async getOtp(@Param('userId') userId: string) { // Keep as string
-  return this.authService.getOtp(parseInt(userId));
+  @Get('get-otp/:userId')
+  async getOtp(@Param('userId') userId: string) {
+    return this.authService.getOtp(parseInt(userId));
+  }
+
+  @Post('login')
+  async login(@Body() body: { phone: string; password: string }) {
+    console.log('Login request received:', body)
+    return this.authService.loginMobile(body.phone, body.password);
+  }
+
+  @Post('send-otp')
+  async sendOtp(@Body() body: { email: string }) {
+    return this.authService.sendOtpToEmail(body.email);
+  }
+
+  // beckend-auth.controller.ts
+@Get('cache-diagnostics/:userId')
+async cacheDiagnostics(@Param('userId') userId: number) {
+  const key = `otp:${userId}`;
+  const otpValue = await this.authService.getOtp(userId); // Get direct value
+  
+  let allKeys: string[] = [];
+  try {
+    if (typeof this.cacheManager.stores.keys === 'function') {
+      allKeys = Array.from(await this.cacheManager.stores.keys()).map(String);
+    }
+  } catch (error) {
+    console.error('Key listing failed', error);
+  }
+  
+  return {
+    userId,
+    key,
+    storedOtp: otpValue, 
+    allKeys
+  };
 }
 
-@Post('login')
-async login(@Body() body: { phone: string; password: string }) {
-  return this.authService.loginMobile(body.phone, body.password);
+// In controller
+@Get('cache-keys')
+async listCacheKeys() {
+  return this.authService.debugCacheKeys();
 }
+
 
 }

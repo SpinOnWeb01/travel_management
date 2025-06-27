@@ -1,3 +1,4 @@
+// app.module.ts
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ormConfig } from './ormconfig';
@@ -8,18 +9,26 @@ import { TravelCategoryModule } from './travel-category/travel_category.module';
 import { UserModule } from './user/user.module';
 import { BeckendAuthModule } from './beckend-auth/beckend-auth.module';
 import { CacheModule } from '@nestjs/cache-manager';
+import { MailerModule } from './mailer/mailer.module';
+import * as redisStore from 'cache-manager-redis-store';
 
 @Module({
   imports: [
+    MailerModule,
     TypeOrmModule.forRoot(ormConfig),
     UsersModule,
     AuthModule,
     TravelBlogsModule,
     TravelCategoryModule,
     UserModule,
-    CacheModule.register({ isGlobal: true }), // ✅ GLOBAL cache
-    BeckendAuthModule, // ✅ This auto-registers its own controller/service
+    CacheModule.register({
+      store: redisStore as any,
+      host: 'localhost', // or your Redis host
+      port: 6379,        // default Redis port
+      ttl: 600,          // 10 minutes in seconds for Redis
+      isGlobal: true,
+    }),
+    BeckendAuthModule,
   ],
 })
 export class AppModule {}
-

@@ -3265,93 +3265,198 @@ only screen and (min-width: 576px) and (max-width: 767px),
 }
 
 
-/*   */
 
-/* .exclusive-post-item .swiper-slide {
+.big-slider img{height:64vh; object-fit: cover;}
+
+.modal-gallery-body, .modalfooter {background:#2a2a3a; justify-content: center;}
+
+.thumbnail-image {
+  height:40px!important;
+}
+
+.slick-prev:before, .slick-next:before {display: none;}
+
+.modal-gallery-body .slick-dots {display:none;}
+
+
+/* login popup */
+
+.loginPopup .modal-content {background:none;}
+
+.closebtn.modal-header {border-bottom:none;}
+
+.closebtn {
+
   position: relative;
-  overflow: hidden;
-} */
+}
 
-
-/* .exclusive-post-item .swiper-wrapper .swiper-slide::after {
-
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 60px;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
-  background: linear-gradient(to left, #ffffff, transparent);
-  box-shadow: -10px 0 20px rgba(255, 255, 255, 0.4);
-  border-top-right-radius: 16px;
-  border-bottom-right-radius: 16px;
-} */
-
-
-
-
-
-
-
-/* .exclusive-post-item .swiper-slide:last-child::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 60px;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
-  background: linear-gradient(to left,
-      rgba(255, 255, 255, 0.8) 0%,
-      rgba(255, 255, 255, 0) 100%);
-  box-shadow: -15px 0 20px rgba(0, 0, 0, 0.1);
-  border-top-right-radius: 16px;
-  border-bottom-right-radius: 16px;
-} */
-
-/* Fade effect at container edge */
-/* .exclusive-post-item .swiper::after {
-  content: "";
-    z-index: 10;
-    pointer-events: none;
-    background: linear-gradient(90deg, #ffffff3a 0%, #fffffffa 100%);
-    width: 137px;
-    height: 100%;
+/* Custom Close Button Style */
+.closebtn .btn-close {
+  opacity: 1;
+    background-color: #fff;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    width: 13px;
+    height: 13px;
+    display: flex;
     position: absolute;
-    top: 0;
-    right: 0;
-} */
+    top: 48px;
+    font-size:12px;
+    color: #454545;
+    right: -20px;
+}
+
+/* Remove the default close icon's X color */
+.closebtn .btn-close::before {
+  color: #454545;
+  font-size: 12px;
+}
+
+.call-login-btn {
+ margin-bottom: 30px;
+  
+  cursor: pointer;
+  
+  transition: all 0.3s ease;
+}
 
 
 
-/* .exclusive-post-item .swiper::after {
-  content: "";
-  z-index: 10;
-  pointer-events: none;
-  background: linear-gradient(90deg, #ffffff3a 0%, #fffffffa 100%);
-  width: 120px;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  right: 0;
-} */
-
-/* Left side faded effect (new) */
-
-
-/* .exclusive-post-item .swiper::before {
-  content: "";
-  z-index: 10;
-  pointer-events: none;
-  background: linear-gradient(90deg, #fffffffa 0%, #ffffff3a 100%);
-  width: 120px;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-} */
+.call-login-btn .icon-box {
+  border-radius: 24px;
+    background: linear-gradient(180deg, #FFBE45 0%, #FF3535 100%);
+    font-family: Malgun Gothic;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 13px;
+    text-align: center;
+    box-shadow: 0px 4px 25px 2px rgba(0, 0, 0, 0.15);
+    display: flex;
+    padding: 10px;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+}
 
 
+.login-box.registerbox {max-width: 900px;}
+
+
+
+
+
+/* === Gradient Tabs Wrapper Background === */
+.registertab-wrapper {
+  background: #fff;
+  padding: 20px;
+  border-radius: 30px;
+  box-shadow: 0 12px 24px rgba(0, 188, 212, 0.1);
+  margin-bottom: 30px;
+
+}
+
+/* === Modern Tab Buttons === */
+.registertab {
+  border-radius: 51px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 7px 0 rgb(0 0 0 / 30%);
+  border: none !important;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.registertab .nav-item {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.registertab .nav-link {
+    background: #fff6;
+    min-width: 90%;
+    width:90%;
+    margin: 8px;
+    padding: 5px 15px;
+    font-size: 16px;
+    font-weight: 600;
+    color:#454545;
+    border: none !important;
+    border-radius: 999px !important;
+}
+
+.registertab .nav-link:hover {
+  background-image:linear-gradient(#ffbe45 0%, #ff3535 100%);
+  color: #fff!important;
+  font-weight: 600;
+  
+}
+
+.registertab .nav-link.active {
+  background-image: linear-gradient(#ffbe45 0%, #ff3535 100%);
+  color: #fff !important;
+  font-weight: 600;
+  margin-left:10px;
+  
+}
+
+/* === Mobile Responsive === */
+@media (max-width: 576px) {
+  .registertab {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .registertab .nav-link {
+    width: 100%;
+    max-width: 280px;
+  }
+} 
+
+/* === INPUT FIELD DESIGN === */
+.registerloginfrom input {
+  border-radius: 10px !important;
+  border: 1px solid #ddd !important;
+  padding: 12px 14px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  box-shadow: none !important;
+}
+
+.registerloginfrom select{border-radius: 10px !important;
+  border: 1px solid #ddd !important;
+  padding: 12px 14px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-shadow: none !important;}
+
+.registerloginfrom .formpassword {border-radius:10px 0px 0px 10px !important;}
+
+
+.registerloginfrom select option{background: #fff;
+  border-left: none;
+  border-radius: 0 10px 10px 0 !important;
+  padding: 4px 0px;
+  color: #454545;
+  font-size: 14px;}
+.registerloginfrom input::placeholder {
+  background: #fff;
+  border-left: none;
+  border-radius: 0 10px 10px 0 !important;
+  padding: 4px 0px;
+  color: #454545;
+  font-size: 14px;
+
+}
+
+.input-group-text:hover {
+  background-color: #f4f4f4;
+}
+
+
+.registerloginfrom form .form-label {
+  font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #454545;
+}

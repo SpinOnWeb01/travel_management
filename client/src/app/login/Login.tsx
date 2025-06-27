@@ -71,6 +71,27 @@ export default function LoginPage() {
               </button>
             </div>
 
+            <div className="login-divider">
+              <span className="divider-line" />
+              <span className="divider-text logintext">
+                Other way to sign in
+              </span>
+              <span className="divider-line" />
+            </div>
+            <button
+              className="call-login-btn mx-auto mb-4"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+
+                
+            >
+              <span className="icon-box">
+                <i className="bi bi-telephone-fill"></i>
+              </span>
+            </button>
+
             <p className="small text-muted p-1s">
               By logging in, I understand & agree to Travel{" "}
               <Link href="#" className="text-danger text-decoration-none">
