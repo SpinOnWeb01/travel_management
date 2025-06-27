@@ -42,6 +42,11 @@ lerna-debug.log*
 .env.production.local
 .env.local
 
+# Ignore Google OAuth files
+server/src/beckend-auth/google.controller.ts
+server/src/beckend-auth/strategies/google.strategy.ts
+
+
 # temp directory
 .temp
 .tmp
