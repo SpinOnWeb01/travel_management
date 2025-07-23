@@ -270,6 +270,26 @@ const BlogForm = () => {
           )}
         </div>
 
+        {/* Category Name */}
+        <div className="mb-4">
+          <label className="blog-form-label">Category Name</label>
+          <select
+            name="category_name"
+            value={form.category_name}
+            onChange={handleChange}
+            className="blog-form-control"
+            required
+          >
+            <option value="">Select a category</option>
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.slug}>
+                {cat.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Gallery Images */}
         <div className="mb-4">
           <label className="blog-form-label">Gallery Images</label>
           <div className="file-upload-wrapper">
@@ -323,7 +343,6 @@ const BlogForm = () => {
             value={form.content_description}
             onChange={handleChange}
             name="content_description"
-            placeholder="Write your detailed blog content here..."
           />
         </div>
 

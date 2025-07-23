@@ -19,6 +19,7 @@ const BlogEdit = () => {
     category_name: '',
     gallery_images: [],
     content_description: '',
+    published_date: ''
   });
 
   const [featuredImageUrl, setFeaturedImageUrl] = useState(null);
@@ -41,7 +42,7 @@ const BlogEdit = () => {
 
   useEffect(() => {
     const fetchBlogData = async () => {
-      console.log('Fetching blog data for slug:', slug);
+      
       if (!slug) return;
 
       try {
@@ -61,6 +62,7 @@ const BlogEdit = () => {
           category_name: data.category_name || '',
           gallery_images: [],
           content_description: data.content_description || '',
+          published_date: data.published_date || '',
         });
 
         if (data.featured_image_url) {
@@ -110,6 +112,7 @@ const BlogEdit = () => {
     formData.append('slug', form.slug);
     formData.append('category_name', form.category_name || 'default-category');
     formData.append('content_description', form.content_description);
+    formData.append('published_date', form.published_date);
 
     if (form.featured_image) {
       formData.append('featured_image', form.featured_image);
@@ -322,6 +325,17 @@ const BlogEdit = () => {
             placeholder="Write your detailed blog content here..."
           />
         </div>
+
+          <div className="mb-4">
+            <label className="blog-form-label">Published Date</label>
+            <input
+              type="date"
+              name="published_date"
+              value={form.published_date}
+              onChange={handleChange}
+              className="blog-form-control"
+            />
+      </div>
 
         <button type="submit" className="submit-btn">
           <FontAwesomeIcon icon={faSave} className="me-2" />

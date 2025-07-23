@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import DOMPurify from 'dompurify';
 
 const BlogTable = ({ blogs, onDelete }) => {
   return (
@@ -9,6 +10,8 @@ const BlogTable = ({ blogs, onDelete }) => {
           <th>S.No</th>
           <th>Title</th>
           <th>Category</th>
+          <th>Category Name</th>
+          <th>Content Description</th>
           <th>Content</th>
           <th>Actions</th>
         </tr>
@@ -22,7 +25,7 @@ const BlogTable = ({ blogs, onDelete }) => {
             <td>{blog.meta_description}</td>
             <td>
               <Link
-                to={`/dashboard/blogs/edit/${blog.slug}`}
+                to={`/dashboard/blogs/edit/${blog.id}`}
                 className="btn btn-warning btn-sm me-2"
               >
                 Edit
