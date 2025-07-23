@@ -4,6 +4,7 @@ import { create } from 'zustand';
 import { fetchCategoryWithBlogs } from '@/lib/categoryBlogapi';
 
 type Blog = {
+  category_name: string;
   id: string | number;
   featured_image?: string;
   main_heading: string;
