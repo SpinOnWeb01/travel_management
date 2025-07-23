@@ -25,7 +25,7 @@ export class AuthController {
   @Post('login')
   async login(
     @Body() body: { email: string; password: string },
-    @Res({ passthrough: true }) res: Response, // required for cookies
+    @Res({ passthrough: true }) res: Response, 
   ) {
     const user = await this.authService.validateUser(body.email, body.password);
     if (!user) {

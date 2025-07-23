@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtModule } from '@nestjs/jwt';
+import { ConfigModule } from '@nestjs/config'; // ✅ Required for ConfigService
 import { Users } from 'src/user/user.entity';
 import { BeckendAuthController } from './beckend-auth.controller';
 import { BeckendAuthService } from './beckend-auth.service';
@@ -10,6 +11,7 @@ import { MailerModule } from 'src/mailer/mailer.module';
 
 @Module({
   imports: [
+    ConfigModule, // ✅ Fix: import ConfigModule
     MailerModule,
     TypeOrmModule.forFeature([Users]),
     JwtModule.register({
@@ -17,7 +19,7 @@ import { MailerModule } from 'src/mailer/mailer.module';
       signOptions: { expiresIn: '1d' },
     }),
   ],
-  controllers: [BeckendAuthController,GoogleAuthController],
-  providers: [BeckendAuthService,GoogleStrategy],
+  controllers: [BeckendAuthController, GoogleAuthController],
+  providers: [BeckendAuthService, GoogleStrategy],
 })
 export class BeckendAuthModule {}

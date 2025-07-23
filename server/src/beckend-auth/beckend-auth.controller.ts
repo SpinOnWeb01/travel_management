@@ -28,17 +28,26 @@ export class BeckendAuthController {
   }
 
   @Post('login')
-  async login(@Body() body: { phone: string; password: string }) {
-    console.log('Login request received:', body)
-    return this.authService.loginMobile(body.phone, body.password);
+async login(@Body() body: { phone: string; password: string }) {
+  try {
+    console.log('Login request received:', body);
+    const result = await this.authService.loginMobile(body.phone, body.password);
+    return result;
+  } catch (error) {
+    console.error('Login failed:', error);
+    return {
+      statusCode: 500,
+      message: 'Login failed',
+      error: error.message || 'Internal server error',
+    };
   }
+}
 
   @Post('send-otp')
   async sendOtp(@Body() body: { email: string }) {
     return this.authService.sendOtpToEmail(body.email);
   }
 
-  // beckend-auth.controller.ts
 @Get('cache-diagnostics/:userId')
 async cacheDiagnostics(@Param('userId') userId: number) {
   const key = `otp:${userId}`;
@@ -51,8 +60,7 @@ async cacheDiagnostics(@Param('userId') userId: number) {
     }
   } catch (error) {
     console.error('Key listing failed', error);
-  }
-  
+  } 
   return {
     userId,
     key,
@@ -60,12 +68,17 @@ async cacheDiagnostics(@Param('userId') userId: number) {
     allKeys
   };
 }
-
-// In controller
+@Post('send-otp-mobile')
+async sendOtpForSignup(@Body() body: { phone: string }) {
+  return this.authService.initiateSignup(body.phone);
+}
+@Post('set-password')
+async setPassword(@Body() body: { userId: number; password: string }) {
+  return this.authService.setPassword(body.userId, body.password);
+}
+// In controller 
 @Get('cache-keys')
 async listCacheKeys() {
   return this.authService.debugCacheKeys();
 }
-
-
 }

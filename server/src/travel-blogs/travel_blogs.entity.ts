@@ -36,6 +36,9 @@ export class TravelBlog {
    @Column({ type: 'text',  nullable: true })
    content_description: string;
 
+   @Column({ type: 'date',  nullable: true })
+   published_date: Date;
+
     // ✅ Foreign key column
   @Column({ nullable: true })
   category_id: number;

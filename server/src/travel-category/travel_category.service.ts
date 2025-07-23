@@ -40,7 +40,7 @@ export class TravelCategoryService {
     const category = await this.categoryRepo.findOne({ where: { category_slug } });
 
     if (!category) {
-      throw new NotFoundException('Category not found');
+      throw new NotFoundException('Category does not found');
     }
 
     const blogs = await this.blogRepo.find({

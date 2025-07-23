@@ -23,19 +23,10 @@ function Login() {
     }
   };
   
-    // const handleCheckboxChange = (e) => {
-    //     const { checked } = e.target;
-    //     // handle checkbox logic here
-    //     console.log("Remember Me:", checked);
-    // }
     const handleInvalid = (e) => {
         e.preventDefault();
         e.target.classList.add("was-validated");
     }
-
-  
-
-
 
   return (
     <>
@@ -97,7 +88,7 @@ function Login() {
               <div className="invalid-feedback">Please provide a password.</div>
             </div>
 
-            {/* Remember Me */}
+            {/* Remember Me don't allow */}
             <div className="d-flex justify-content-between align-items-center mb-4">
               <div className="form-check">
                 <input type="checkbox" className="form-check-input" id="rememberMe" />

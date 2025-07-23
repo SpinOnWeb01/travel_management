@@ -11,6 +11,7 @@ import { BeckendAuthModule } from './beckend-auth/beckend-auth.module';
 import { CacheModule } from '@nestjs/cache-manager';
 import { MailerModule } from './mailer/mailer.module';
 import * as redisStore from 'cache-manager-redis-store';
+import { AdminpanelauthModule } from './adminpanelauth/adminpanelauth.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import * as redisStore from 'cache-manager-redis-store';
     UsersModule,
     AuthModule,
     TravelBlogsModule,
+    AdminpanelauthModule,
     TravelCategoryModule,
     UserModule,
     CacheModule.register({

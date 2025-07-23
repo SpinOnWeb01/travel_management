@@ -110,7 +110,7 @@ export default function ExploreOther() {
                   width={500}
                   height={300}
                   className="card-img-top"
-                  // style={{
+                  // style={{ 
                   //   width: "100%",
                   //   height: "200px",
                   //   objectFit: "cover",

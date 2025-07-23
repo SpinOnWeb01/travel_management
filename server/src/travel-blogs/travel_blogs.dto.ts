@@ -40,4 +40,7 @@ export class CreateTravelBlogsDto {
   @IsOptional()
   @IsString()
   content_description?: string;
+
+  @IsOptional()
+  published_date?: Date;
 }

@@ -38,7 +38,8 @@ const BlogForm = () => {
     category_name: '',
     category_slug: '',
     gallery_images: [],
-    content_description: ''
+    content_description: '',
+    published_date: ''
   });
 
   const handleChange = (e) => {
@@ -112,6 +113,7 @@ const BlogForm = () => {
     formData.append('category_name', form.category_name || 'default-category');
     formData.append('category_slug', form.category_slug);
     formData.append('content_description', form.content_description);
+    formData.append('published_date', form.published_date);
 
     form.gallery_images.forEach((file) => {
       formData.append('gallery_image', file);
@@ -270,26 +272,6 @@ const BlogForm = () => {
           )}
         </div>
 
-        {/* Category Name */}
-        <div className="mb-4">
-          <label className="blog-form-label">Category Name</label>
-          <select
-            name="category_name"
-            value={form.category_name}
-            onChange={handleChange}
-            className="blog-form-control"
-            required
-          >
-            <option value="">Select a category</option>
-            {categories.map((cat) => (
-              <option key={cat.id} value={cat.slug}>
-                {cat.name}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Gallery Images */}
         <div className="mb-4">
           <label className="blog-form-label">Gallery Images</label>
           <div className="file-upload-wrapper">
@@ -343,8 +325,21 @@ const BlogForm = () => {
             value={form.content_description}
             onChange={handleChange}
             name="content_description"
+            placeholder="Write your detailed blog content here..."
           />
         </div>
+
+        <div className="mb-4">
+            <label className="blog-form-label">Published Date</label>
+            <input
+              type="date"
+              name="published_date"
+              value={form.published_date}
+              onChange={handleChange}
+              className="blog-form-control"
+            />
+      </div>
+               
 
         <button type="submit" className="submit-btn">
           {id ? 'Update Blog' : 'Publish Blog'}
