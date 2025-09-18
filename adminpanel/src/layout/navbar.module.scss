@@ -1,0 +1,145 @@
+.header {
+  //background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: 60px;
+  z-index: 1050;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 10px;
+
+  .btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #333;
+  }
+
+  .logo {
+    span {
+      font-size: 20px;
+      font-weight: 600;
+      color: #333;
+    }
+  }
+
+  .search-bar {
+    max-width: 350px;
+    width: 100%;
+
+    input.form-control {
+      height: 36px;
+      font-size: 14px;
+      padding: 6px 12px;
+    }
+
+    .btn {
+      height: 36px;
+    }
+  }
+
+ .nav-link {
+      color: #333!important;
+      font-size: 16px;
+    }
+
+
+  .header-nav {
+    .nav-link {
+      color: #333!important;
+      font-size: 16px;
+    }
+
+    .dropdown-menu {
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      min-width: 180px;
+      padding: 0;
+    }
+
+    .dropdown-item {
+      font-size: 14px;
+      padding: 10px 16px;
+      color: #333;
+    }
+
+    .dropdown-header {
+      background-color: #f8f9fa;
+      padding: 12px;
+
+      h6 {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      span {
+        font-size: 13px;
+        color: #888;
+      }
+    }
+  }
+}
+
+img.rounded-circle {
+  object-fit: cover;
+}
+
+.darkHeader {
+  background-color: #212529 !important;
+}
+
+.lightHeader {
+  background-color: #ffffff !important;
+}
+
+.darkIcon {
+  color: #f1f1f1 !important;
+}
+
+.lightIcon {
+  color: #1a1a1a !important;
+}
+
+.darkText {
+  color: #f1f1f1 !important;
+}
+
+.lightText {
+  color: #1a1a1a !important;
+}
+
+.themeIcon {
+  color: inherit;
+  stroke-width: 2;
+}
+.darkHeader .themeIcon {
+  color: #f1f1f1;
+}
+.lightHeader .themeIcon {
+  color: #1a1a1a;
+}
+
+.btn:hover svg {
+  opacity: 0.8;
+  transform: scale(1.05);
+  transition: all 0.2s ease;
+}
+
+
+
+@media (max-width: 768px) {
+  .header {
+    .search-bar {
+      display: none !important;
+    }
+
+    .logo {
+      span {
+        font-size: 18px;
+      }
+    }
+  }
+}

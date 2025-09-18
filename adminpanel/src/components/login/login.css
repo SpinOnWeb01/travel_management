@@ -1,0 +1,166 @@
+/* ===== TOP BANNER OR HEADER ABOVE SIGN-IN FORM ===== */
+.sign-in-page .sign-in-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  animation: slideDownFade 0.6s ease-in-out;
+}
+
+.sign-in-page .sign-in-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #6a11cb;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sign-in-page .sign-in-header p {
+  font-size: 1rem;
+  color: #555;
+  margin: 0;
+}
+
+/* Animation */
+@keyframes slideDownFade {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+
+/* new */
+
+.sign-in-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(0,0,0,0.10) 100%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    
+}
+
+
+.sign-in-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(0,0,0,0.10) 100%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.sign-in-page > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== ENHANCED SIGN-IN FORM ANIMATION & GRADIENT BG ===== */
+.sign-in-page .sign-in-form {
+    background: linear-gradient(135deg, rgba(106,17,203,0.5) 0%, rgba(37,117,252,0.5) 100%), url('/public/images/backgroundloging.avif') center/cover no-repeat;
+    color: #fff;
+    border-radius: 24px;
+    box-shadow: 0 12px 40px rgba(37, 117, 252, 0.18), 0 2px 8px rgba(106, 17, 203, 0.10);
+    animation: popFadeIn 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+.sign-in-page .sign-in-detail {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.sign-in-page .sign-in-detail .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(106,17,203,0.5) 0%, rgba(37,117,252,0.5) 100%);
+  z-index: 1;
+}
+
+.sign-in-page .sign-in-detail .z-2 {
+  position: relative;
+  z-index: 2;
+}
+
+.sign-in-page .sign-in-detail h1 {
+  font-weight: 700;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+
+@media (max-width: 768px) {
+  .sign-in-page .sign-in-detail {
+    display: none;
+  }
+
+  .sign-in-page .sign-in-form {
+    box-shadow: none;
+    border-radius: 0;
+    padding: 2rem;
+  }
+
+  .btn-primary {
+    font-size: 1rem;
+  }
+}
+
+
+.sign-in-page .glass-card {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  position: relative;
+  max-width: 100%;
+  text-align: center;
+}
+
+/* ===== TEXT INSIDE GLASS CARD ===== */
+.sign-in-page .glass-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  margin-bottom: 1rem;
+}
+
+.sign-in-page .glass-subheading {
+  color: #f1f1f1;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* ===== BUTTON INSIDE GLASS CARD ===== */
+.sign-in-page .glass-btn {
+  border-radius: 30px;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-in-out;
+}
+
+.sign-in-page .glass-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
