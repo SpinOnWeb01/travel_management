@@ -141,6 +141,7 @@ const BlogForm = () => {
     }
   };
 
+
   return (
     <div className="blog-form-container">
       <h2 className="blog-form-header">{id ? 'Edit Blog' : 'Add New Blog'}</h2>
@@ -158,7 +159,7 @@ const BlogForm = () => {
         </div>
 
         <div className="mb-4">
-          <label className="blog-form-label">Meta Description</label>
+          <label className="blog-form-label">Meta Description Req.</label>
           <textarea
             name="meta_description"
             value={form.meta_description}
